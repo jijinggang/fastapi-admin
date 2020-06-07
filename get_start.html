@@ -1,0 +1,500 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Getting started &mdash; fastapi-admin v0.2.5 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Examples" href="examples.html" />
+    <link rel="prev" title="Welcome to fastapi-admin’s documentation!" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> fastapi-admin
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v0.2.5
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Getting started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#live-demo">Live Demo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#screenshots">Screenshots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#quick-start">Quick Start</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#run-example-local">Run Example Local</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#backend-integration">Backend Integration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#front">Front</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#features">Features</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#builtin-auth-and-permissions-control">Builtin Auth And Permissions Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#custom-login">Custom Login</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#enum-support">Enum Support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#verbose-name">Verbose Name</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#foreignkeyfield-support">ForeignKeyField Support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#manytomanyfield-support">ManyToManyField Support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#jsonfield-render">JSONField Render</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#search-fields">Search Fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#xlsx-export">Xlsx Export</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bulk-actions">Bulk Actions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#default-menus">Default Menus</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#deployment">Deployment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#restful-api-docs">Restful API Docs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#thanksto">ThanksTo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#license">License</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_reference.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">ChangeLog</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">fastapi-admin</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Getting started</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/get_start.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="getting-started">
+<h1>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
+<a class="reference external image-reference" href="https://pypi.python.org/pypi/fastapi-admin"><img alt="https://img.shields.io/pypi/v/fastapi-admin.svg?style=flat" src="https://img.shields.io/pypi/v/fastapi-admin.svg?style=flat" /></a>
+<a class="reference external image-reference" href="https://github.com/long2ice/fastapi-admin"><img alt="https://img.shields.io/github/license/long2ice/fastapi-admin" src="https://img.shields.io/github/license/long2ice/fastapi-admin" /></a>
+<a class="reference external image-reference" href="https://github.com/long2ice/fastapi-admin/actions?query=workflow:gh-pages"><img alt="https://github.com/long2ice/fastapi-admin/workflows/gh-pages/badge.svg" src="https://github.com/long2ice/fastapi-admin/workflows/gh-pages/badge.svg" /></a>
+<a class="reference external image-reference" href="https://github.com/long2ice/fastapi-admin/actions?query=workflow:pypi"><img alt="https://github.com/long2ice/fastapi-admin/workflows/pypi/badge.svg" src="https://github.com/long2ice/fastapi-admin/workflows/pypi/badge.svg" /></a>
+<p><a class="reference external" href="https://blog.long2ice.cn/2020/05/fastapi-admin%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA%E5%9F%BA%E4%BA%8Efastapi%E4%B8%8Etortoise-orm%E7%9A%84%E7%AE%A1%E7%90%86%E5%90%8E%E5%8F%B0/">中文文档</a></p>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>FastAPI-Admin is a admin dashboard based on <a class="reference external" href="https://github.com/tiangolo/fastapi">fastapi</a> and <a class="reference external" href="https://github.com/tortoise/tortoise-orm">tortoise-orm</a>.</p>
+<p>FastAPI-Admin provide crud feature out-of-the-box with just a few config.</p>
+</div>
+<div class="section" id="live-demo">
+<h2>Live Demo<a class="headerlink" href="#live-demo" title="Permalink to this headline">¶</a></h2>
+<p>Check a live Demo here <a class="reference external" href="https://fastapi-admin.long2ice.cn/">https://fastapi-admin.long2ice.cn</a>.</p>
+<ul class="simple">
+<li><p>username: <code class="docutils literal notranslate"><span class="pre">admin</span></code></p></li>
+<li><p>password: <code class="docutils literal notranslate"><span class="pre">123456</span></code></p></li>
+</ul>
+<p>Data in database will restore every day.</p>
+</div>
+<div class="section" id="screenshots">
+<h2>Screenshots<a class="headerlink" href="#screenshots" title="Permalink to this headline">¶</a></h2>
+<img alt="https://github.com/long2ice/fastapi-admin/raw/master/images/login.png" src="https://github.com/long2ice/fastapi-admin/raw/master/images/login.png" />
+<img alt="https://github.com/long2ice/fastapi-admin/raw/master/images/list.png" src="https://github.com/long2ice/fastapi-admin/raw/master/images/list.png" />
+<img alt="https://github.com/long2ice/fastapi-admin/raw/master/images/view.png" src="https://github.com/long2ice/fastapi-admin/raw/master/images/view.png" />
+<img alt="https://github.com/long2ice/fastapi-admin/raw/master/images/create.png" src="https://github.com/long2ice/fastapi-admin/raw/master/images/create.png" />
+</div>
+<div class="section" id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/tiangolo/fastapi">FastAPI</a> framework as your backend framework.</p></li>
+<li><p><a class="reference external" href="https://github.com/tortoise/tortoise-orm">Tortoise-ORM</a> as your orm framework, by the way, which is best asyncio orm so far and I’m one of the contributors😋.</p></li>
+</ul>
+</div>
+<div class="section" id="quick-start">
+<h2>Quick Start<a class="headerlink" href="#quick-start" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="run-example-local">
+<h3>Run Example Local<a class="headerlink" href="#run-example-local" title="Permalink to this headline">¶</a></h3>
+<p>Look at <a class="reference external" href="https://github.com/long2ice/fastapi-admin/tree/master/examples">examples</a>.</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">https://github.com/long2ice/fastapi-admin.git</span></code>.</p></li>
+<li><p>create database <code class="docutils literal notranslate"><span class="pre">fastapi-admin</span></code> and import from <code class="docutils literal notranslate"><span class="pre">examples/example.sql</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">install</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">env</span> <span class="pre">DATABASE_URL=mysql://root:123456&#64;127.0.0.1:3306/fastapi-admin</span> <span class="pre">PYTHONPATH=./</span> <span class="pre">python3</span> <span class="pre">examples/main.py</span></code>,then you can see:</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+INFO:     Started reloader process [89005]
+INFO:     Started server process [89009]
+INFO:     Waiting for application startup.
+INFO:     Tortoise-ORM startup
+    connections: {&#39;default&#39;: &#39;mysql://root:123456@127.0.0.1:3306/fastapi-admin&#39;}
+    apps: {&#39;models&#39;: {&#39;models&#39;: [&#39;examples.models&#39;], &#39;default_connection&#39;: &#39;default&#39;}}
+INFO:     Tortoise-ORM started, {&#39;default&#39;: &lt;tortoise.backends.mysql.client.MySQLClient object at 0x110ed6760&gt;}, {&#39;models&#39;: {&#39;Category&#39;: &lt;class &#39;examples.models.Category&#39;&gt;, &#39;Product&#39;: &lt;class &#39;examples.models.Product&#39;&gt;, &#39;User&#39;: &lt;class &#39;examples.models.User&#39;&gt;}}
+INFO:     Tortoise-ORM generating schema
+INFO:     Application startup complete.
+</pre></div>
+</div>
+</div>
+<div class="section" id="backend-integration">
+<h3>Backend Integration<a class="headerlink" href="#backend-integration" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ pip3 install fastapi-admin
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">fastapi_admin.factory</span> <span class="kn">import</span> <span class="n">app</span> <span class="k">as</span> <span class="n">admin_app</span>
+
+<span class="n">fast_app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">()</span>
+
+<span class="n">register_tortoise</span><span class="p">(</span><span class="n">fast_app</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="n">TORTOISE_ORM</span><span class="p">,</span> <span class="n">generate_schemas</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">fast_app</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s1">&#39;/admin&#39;</span><span class="p">,</span> <span class="n">admin_app</span><span class="p">)</span>
+
+<span class="nd">@fast_app</span><span class="o">.</span><span class="n">on_event</span><span class="p">(</span><span class="s1">&#39;startup&#39;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">startup</span><span class="p">():</span>
+    <span class="n">admin_app</span><span class="o">.</span><span class="n">init</span><span class="p">(</span>
+        <span class="n">user_model</span><span class="o">=</span><span class="s1">&#39;User&#39;</span><span class="p">,</span>
+        <span class="n">tortoise_app</span><span class="o">=</span><span class="s1">&#39;models&#39;</span><span class="p">,</span>
+        <span class="n">admin_secret</span><span class="o">=</span><span class="s1">&#39;test&#39;</span><span class="p">,</span>
+        <span class="n">permission</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">site</span><span class="o">=</span><span class="n">Site</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="front">
+<h3>Front<a class="headerlink" href="#front" title="Permalink to this headline">¶</a></h3>
+<p>See <a class="reference external" href="https://github.com/long2ice/fastapi-admin-front">fastapi-admin-front</a> for reference.</p>
+</div>
+</div>
+<div class="section" id="features">
+<h2>Features<a class="headerlink" href="#features" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="builtin-auth-and-permissions-control">
+<h3>Builtin Auth And Permissions Control<a class="headerlink" href="#builtin-auth-and-permissions-control" title="Permalink to this headline">¶</a></h3>
+<p>Inherit <code class="docutils literal notranslate"><span class="pre">fastapi_admin.models.User</span></code> and add you own fields,must contains <code class="docutils literal notranslate"><span class="pre">is_active</span></code> and <code class="docutils literal notranslate"><span class="pre">is_superuser</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">fastapi_admin.models</span> <span class="kn">import</span> <span class="n">User</span> <span class="k">as</span> <span class="n">AdminUser</span>
+
+<span class="k">class</span> <span class="nc">AdminUser</span><span class="p">(</span><span class="n">AdminUser</span><span class="p">,</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">is_active</span> <span class="o">=</span> <span class="n">fields</span><span class="o">.</span><span class="n">BooleanField</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Is Active&#39;</span><span class="p">)</span>
+    <span class="n">is_superuser</span> <span class="o">=</span> <span class="n">fields</span><span class="o">.</span><span class="n">BooleanField</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Is Superuser&#39;</span><span class="p">)</span>
+    <span class="n">status</span> <span class="o">=</span> <span class="n">fields</span><span class="o">.</span><span class="n">IntEnumField</span><span class="p">(</span><span class="n">Status</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;User Status&#39;</span><span class="p">)</span>
+    <span class="n">created_at</span> <span class="o">=</span> <span class="n">fields</span><span class="o">.</span><span class="n">DatetimeField</span><span class="p">(</span><span class="n">auto_now_add</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">updated_at</span> <span class="o">=</span> <span class="n">fields</span><span class="o">.</span><span class="n">DatetimeField</span><span class="p">(</span><span class="n">auto_now</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Then add <code class="docutils literal notranslate"><span class="pre">fastapi_admin.models</span></code> to <code class="docutils literal notranslate"><span class="pre">Tortoise-ORM</span></code> config, example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">TORTOISE_ORM</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;connections&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;default&#39;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;DATABASE_URL&#39;</span><span class="p">)</span>
+    <span class="p">},</span>
+    <span class="s1">&#39;apps&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;models&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;models&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;examples.models&#39;</span><span class="p">,</span> <span class="s1">&#39;fastapi_admin.models&#39;</span><span class="p">],</span>
+            <span class="s1">&#39;default_connection&#39;</span><span class="p">:</span> <span class="s1">&#39;default&#39;</span><span class="p">,</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>And set <code class="docutils literal notranslate"><span class="pre">permission=True</span></code> to active it:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">admin_app</span><span class="o">.</span><span class="n">init</span><span class="p">(</span>
+    <span class="n">user_model</span><span class="o">=</span><span class="s1">&#39;AdminUser&#39;</span><span class="p">,</span>
+    <span class="n">admin_secret</span><span class="o">=</span><span class="s1">&#39;123456&#39;</span><span class="p">,</span>
+    <span class="n">models</span><span class="o">=</span><span class="s1">&#39;examples.models&#39;</span><span class="p">,</span>
+    <span class="n">permission</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">site</span><span class="o">=</span><span class="n">Site</span><span class="p">(</span>
+        <span class="o">...</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>And register permissions and createsuperuser:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ fastapi-admin -h
+usage: fastapi-admin <span class="o">[</span>-h<span class="o">]</span> -c CONFIG <span class="o">{</span>register_permissions,createsuperuser<span class="o">}</span> ...
+
+optional arguments:
+  -h, --help            show this <span class="nb">help</span> message and <span class="nb">exit</span>
+  -c CONFIG, --config CONFIG
+                        Tortoise-orm config dict import path,like settings.TORTOISE_ORM.
+
+subcommands:
+  <span class="o">{</span>register_permissions,createsuperuser<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="custom-login">
+<h3>Custom Login<a class="headerlink" href="#custom-login" title="Permalink to this headline">¶</a></h3>
+<p>You can write your own login view logic:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">admin_app</span><span class="o">.</span><span class="n">init</span><span class="p">(</span>
+    <span class="o">...</span>
+    <span class="n">login_view</span><span class="o">=</span><span class="s2">&quot;examples.routes.login&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>And must return json like:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span>{
+    &quot;user&quot;: {
+        &quot;username&quot;: &quot;admin&quot;,
+        &quot;is_superuser&quot;: False,
+        &quot;avatar&quot;: &quot;https://avatars2.githubusercontent.com/u/13377178?s=460&amp;u=d150d522579f41a52a0b3dd8ea997e0161313b6e&amp;v=4&quot;,
+    },
+    &quot;token&quot;: &quot;eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyfQ.HSlcYkOEQewxyPuaqcVwCcw_wkbLB50Ws1-ZxfPoLAQ&quot;,
+}
+</pre></div>
+</div>
+</div>
+<div class="section" id="enum-support">
+<h3>Enum Support<a class="headerlink" href="#enum-support" title="Permalink to this headline">¶</a></h3>
+<p>When you define a enum field of tortoise-orm,like <code class="docutils literal notranslate"><span class="pre">IntEnumField</span></code>,you can inherit <code class="docutils literal notranslate"><span class="pre">fastapi_admin.enums.EnumMixin</span></code> and impl <code class="docutils literal notranslate"><span class="pre">choices()</span></code> method,
+FastAPI-Admin will auto read and display and render a <code class="docutils literal notranslate"><span class="pre">select</span></code> widget in front.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Status</span><span class="p">(</span><span class="n">EnumMixin</span><span class="p">,</span> <span class="n">IntEnum</span><span class="p">):</span>
+    <span class="n">on</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">off</span> <span class="o">=</span> <span class="mi">2</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">choices</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="bp">cls</span><span class="o">.</span><span class="n">on</span><span class="p">:</span> <span class="s1">&#39;ON&#39;</span><span class="p">,</span>
+            <span class="bp">cls</span><span class="o">.</span><span class="n">off</span><span class="p">:</span> <span class="s1">&#39;OFF&#39;</span>
+        <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="verbose-name">
+<h3>Verbose Name<a class="headerlink" href="#verbose-name" title="Permalink to this headline">¶</a></h3>
+<p>FastAPI-Admin will auto read <code class="docutils literal notranslate"><span class="pre">description</span></code> defined in tortoise-orm model <code class="docutils literal notranslate"><span class="pre">Field</span></code> and display in front.</p>
+</div>
+<div class="section" id="foreignkeyfield-support">
+<h3>ForeignKeyField Support<a class="headerlink" href="#foreignkeyfield-support" title="Permalink to this headline">¶</a></h3>
+<p>If <code class="docutils literal notranslate"><span class="pre">ForeignKeyField</span></code> not passed in <code class="docutils literal notranslate"><span class="pre">menu.raw_id_fields</span></code>,FastAPI-Admin will get all related objects and display <code class="docutils literal notranslate"><span class="pre">select</span></code> in front with <code class="docutils literal notranslate"><span class="pre">Model.__str__</span></code>.</p>
+</div>
+<div class="section" id="manytomanyfield-support">
+<h3>ManyToManyField Support<a class="headerlink" href="#manytomanyfield-support" title="Permalink to this headline">¶</a></h3>
+<p>FastAPI-Admin will render <code class="docutils literal notranslate"><span class="pre">ManyToManyField</span></code> with multiple <code class="docutils literal notranslate"><span class="pre">select</span></code> in <code class="docutils literal notranslate"><span class="pre">form</span></code> edit with <code class="docutils literal notranslate"><span class="pre">Model.__str__</span></code>.</p>
+</div>
+<div class="section" id="jsonfield-render">
+<h3>JSONField Render<a class="headerlink" href="#jsonfield-render" title="Permalink to this headline">¶</a></h3>
+<p>FastAPI-Admin will render <code class="docutils literal notranslate"><span class="pre">JSONField</span></code> with <code class="docutils literal notranslate"><span class="pre">jsoneditor</span></code> as beauty interface.</p>
+</div>
+<div class="section" id="search-fields">
+<h3>Search Fields<a class="headerlink" href="#search-fields" title="Permalink to this headline">¶</a></h3>
+<p>Defined <code class="docutils literal notranslate"><span class="pre">menu.search_fields</span></code> in <code class="docutils literal notranslate"><span class="pre">menu</span></code> will render a search form by fields.</p>
+</div>
+<div class="section" id="xlsx-export">
+<h3>Xlsx Export<a class="headerlink" href="#xlsx-export" title="Permalink to this headline">¶</a></h3>
+<p>FastAPI-Admin can export searched data to excel file when define <code class="docutils literal notranslate"><span class="pre">export=True</span></code> in <code class="docutils literal notranslate"><span class="pre">menu</span></code>.</p>
+</div>
+<div class="section" id="bulk-actions">
+<h3>Bulk Actions<a class="headerlink" href="#bulk-actions" title="Permalink to this headline">¶</a></h3>
+<p>Current FastAPI-Admin support builtin bulk action <code class="docutils literal notranslate"><span class="pre">delete_all</span></code>,if you want write your own bulk actions:</p>
+<ol class="arabic simple">
+<li><p>pass <code class="docutils literal notranslate"><span class="pre">bulk_actions</span></code> in <code class="docutils literal notranslate"><span class="pre">Menu</span></code>,example:</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Menu</span><span class="p">(</span>
+    <span class="o">...</span>
+    <span class="n">bulk_actions</span><span class="o">=</span><span class="p">[{</span>
+        <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;delete&#39;</span><span class="p">,</span> <span class="c1"># this is fastapi router path param.</span>
+        <span class="s1">&#39;text&#39;</span><span class="p">:</span> <span class="s1">&#39;delete_all&#39;</span><span class="p">,</span> <span class="c1"># this will show in front.</span>
+    <span class="p">}]</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>write fastapi route,example:</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">fastapi_admin.schemas</span> <span class="kn">import</span> <span class="n">BulkIn</span>
+<span class="kn">from</span> <span class="nn">fastapi_admin.factory</span> <span class="kn">import</span> <span class="n">app</span> <span class="k">as</span> <span class="n">admin_app</span>
+
+<span class="nd">@admin_app</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+    <span class="s1">&#39;/rest/</span><span class="si">{resource}</span><span class="s1">/bulk/delete&#39;</span> <span class="c1"># `delete` is defined in Menu before.</span>
+<span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">bulk_delete</span><span class="p">(</span>
+        <span class="n">bulk_in</span><span class="p">:</span> <span class="n">BulkIn</span><span class="p">,</span>
+        <span class="n">model</span><span class="o">=</span><span class="n">Depends</span><span class="p">(</span><span class="n">get_model</span><span class="p">)</span>
+<span class="p">):</span>
+    <span class="k">await</span> <span class="n">model</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">pk__in</span><span class="o">=</span><span class="n">bulk_in</span><span class="o">.</span><span class="n">pk_list</span><span class="p">)</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;success&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="default-menus">
+<h3>Default Menus<a class="headerlink" href="#default-menus" title="Permalink to this headline">¶</a></h3>
+<p>Default, FastAPI-Admin provide default menus by your models, without doing tedious works.</p>
+</div>
+</div>
+<div class="section" id="deployment">
+<h2>Deployment<a class="headerlink" href="#deployment" title="Permalink to this headline">¶</a></h2>
+<p>Deploy fastapi app by gunicorn+uvicorn or reference <a class="reference external" href="https://fastapi.tiangolo.com/deployment/">https://fastapi.tiangolo.com/deployment/</a>.</p>
+</div>
+<div class="section" id="restful-api-docs">
+<h2>Restful API Docs<a class="headerlink" href="#restful-api-docs" title="Permalink to this headline">¶</a></h2>
+<p>See <a class="reference external" href="https://api-fastapi-admin.long2ice.cn:8443/admin/docs">restful api</a> docs.</p>
+</div>
+<div class="section" id="thanksto">
+<h2>ThanksTo<a class="headerlink" href="#thanksto" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/tiangolo/fastapi">fastapi</a> ,high performance async api framework.</p></li>
+<li><p><a class="reference external" href="https://github.com/tortoise/tortoise-orm">tortoise-orm</a> ,familiar asyncio ORM for python.</p></li>
+</ul>
+</div>
+<div class="section" id="license">
+<h2>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h2>
+<p>This project is licensed under the <a class="reference external" href="https://github.com/long2ice/fastapi-admin/blob/master/LICENSE">MIT</a> License.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="examples.html" class="btn btn-neutral float-right" title="Examples" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to fastapi-admin’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, long2ice
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

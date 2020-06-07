@@ -1,0 +1,520 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>fastapi_admin.factory &mdash; fastapi-admin v0.2.5 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> fastapi-admin
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v0.2.5
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../get_start.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api_reference.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog.html">ChangeLog</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">fastapi-admin</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>fastapi_admin.factory</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for fastapi_admin.factory</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Type</span>
+
+<span class="kn">import</span> <span class="nn">jwt</span>
+<span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">FastAPI</span><span class="p">,</span> <span class="n">HTTPException</span>
+<span class="kn">from</span> <span class="nn">starlette.status</span> <span class="kn">import</span> <span class="n">HTTP_403_FORBIDDEN</span>
+<span class="kn">from</span> <span class="nn">tortoise</span> <span class="kn">import</span> <span class="n">Model</span><span class="p">,</span> <span class="n">Tortoise</span>
+
+<span class="kn">from</span> <span class="nn">.common</span> <span class="kn">import</span> <span class="n">import_obj</span><span class="p">,</span> <span class="n">pwd_context</span>
+<span class="kn">from</span> <span class="nn">.exceptions</span> <span class="kn">import</span> <span class="n">exception_handler</span>
+<span class="kn">from</span> <span class="nn">.schemas</span> <span class="kn">import</span> <span class="n">LoginIn</span>
+<span class="kn">from</span> <span class="nn">.shortcuts</span> <span class="kn">import</span> <span class="n">get_object_or_404</span>
+<span class="kn">from</span> <span class="nn">.site</span> <span class="kn">import</span> <span class="n">Field</span><span class="p">,</span> <span class="n">Menu</span><span class="p">,</span> <span class="n">Resource</span><span class="p">,</span> <span class="n">Site</span>
+
+
+<div class="viewcode-block" id="login"><a class="viewcode-back" href="../../fastapi_admin.html#fastapi_admin.factory.login">[docs]</a><span class="k">async</span> <span class="k">def</span> <span class="nf">login</span><span class="p">(</span><span class="n">login_in</span><span class="p">:</span> <span class="n">LoginIn</span><span class="p">):</span>
+    <span class="n">user_model</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">user_model</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="k">await</span> <span class="n">get_object_or_404</span><span class="p">(</span><span class="n">user_model</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="n">login_in</span><span class="o">.</span><span class="n">username</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">user</span><span class="o">.</span><span class="n">is_active</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">HTTPException</span><span class="p">(</span><span class="n">status_code</span><span class="o">=</span><span class="n">HTTP_403_FORBIDDEN</span><span class="p">,</span> <span class="n">detail</span><span class="o">=</span><span class="s2">&quot;User is not Active!&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">pwd_context</span><span class="o">.</span><span class="n">verify</span><span class="p">(</span><span class="n">login_in</span><span class="o">.</span><span class="n">password</span><span class="p">,</span> <span class="n">user</span><span class="o">.</span><span class="n">password</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="n">HTTPException</span><span class="p">(</span><span class="n">status_code</span><span class="o">=</span><span class="n">HTTP_403_FORBIDDEN</span><span class="p">,</span> <span class="n">detail</span><span class="o">=</span><span class="s2">&quot;Incorrect Password!&quot;</span><span class="p">)</span>
+    <span class="n">ret</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;user&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;username&quot;</span><span class="p">:</span> <span class="n">user</span><span class="o">.</span><span class="n">username</span><span class="p">,</span>
+            <span class="s2">&quot;is_superuser&quot;</span><span class="p">:</span> <span class="n">user</span><span class="o">.</span><span class="n">is_superuser</span><span class="p">,</span>
+            <span class="s2">&quot;avatar&quot;</span><span class="p">:</span> <span class="n">user</span><span class="o">.</span><span class="n">avatar</span> <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="s2">&quot;avatar&quot;</span><span class="p">)</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;token&quot;</span><span class="p">:</span> <span class="n">jwt</span><span class="o">.</span><span class="n">encode</span><span class="p">({</span><span class="s2">&quot;user_id&quot;</span><span class="p">:</span> <span class="n">user</span><span class="o">.</span><span class="n">pk</span><span class="p">},</span> <span class="n">app</span><span class="o">.</span><span class="n">admin_secret</span><span class="p">,</span> <span class="n">algorithm</span><span class="o">=</span><span class="s2">&quot;HS256&quot;</span><span class="p">),</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">ret</span></div>
+
+
+<div class="viewcode-block" id="AdminApp"><a class="viewcode-back" href="../../fastapi_admin.html#fastapi_admin.factory.AdminApp">[docs]</a><span class="k">class</span> <span class="nc">AdminApp</span><span class="p">(</span><span class="n">FastAPI</span><span class="p">):</span>
+    <span class="n">models</span><span class="p">:</span> <span class="n">Any</span>
+    <span class="n">admin_secret</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">user_model</span><span class="p">:</span> <span class="n">Model</span>
+    <span class="n">site</span><span class="p">:</span> <span class="n">Site</span>
+    <span class="n">permission</span><span class="p">:</span> <span class="nb">bool</span>
+    <span class="n">_inited</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">_field_type_mapping</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;IntField&quot;</span><span class="p">:</span> <span class="s2">&quot;number&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;BooleanField&quot;</span><span class="p">:</span> <span class="s2">&quot;checkbox&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;DatetimeField&quot;</span><span class="p">:</span> <span class="s2">&quot;datetime&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;DateField&quot;</span><span class="p">:</span> <span class="s2">&quot;date&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;IntEnumFieldInstance&quot;</span><span class="p">:</span> <span class="s2">&quot;select&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;CharEnumFieldInstance&quot;</span><span class="p">:</span> <span class="s2">&quot;select&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;DecimalField&quot;</span><span class="p">:</span> <span class="s2">&quot;number&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;FloatField&quot;</span><span class="p">:</span> <span class="s2">&quot;number&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;TextField&quot;</span><span class="p">:</span> <span class="s2">&quot;textarea&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;SmallIntField&quot;</span><span class="p">:</span> <span class="s2">&quot;number&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;JSONField&quot;</span><span class="p">:</span> <span class="s2">&quot;json&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="n">model_menu_mapping</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Menu</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">def</span> <span class="nf">_get_model_menu_mapping</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">menus</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Menu</span><span class="p">]):</span>
+        <span class="k">for</span> <span class="n">menu</span> <span class="ow">in</span> <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">url</span> <span class="ow">and</span> <span class="s2">&quot;rest&quot;</span> <span class="ow">in</span> <span class="n">x</span><span class="o">.</span><span class="n">url</span><span class="p">)</span> <span class="ow">or</span> <span class="n">x</span><span class="o">.</span><span class="n">children</span><span class="p">,</span> <span class="n">menus</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">menu</span><span class="o">.</span><span class="n">children</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_get_model_menu_mapping</span><span class="p">(</span><span class="n">menu</span><span class="o">.</span><span class="n">children</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">model_menu_mapping</span><span class="p">[</span><span class="n">menu</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;?&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span> <span class="o">=</span> <span class="n">menu</span>
+
+    <span class="k">def</span> <span class="nf">_get_model_fields_type</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">Model</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
+        <span class="n">model_describe</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+        <span class="n">ret</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">data_fields</span> <span class="o">=</span> <span class="n">model_describe</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;data_fields&quot;</span><span class="p">)</span>
+        <span class="n">pk_field</span> <span class="o">=</span> <span class="n">model_describe</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;pk_field&quot;</span><span class="p">)</span>
+        <span class="n">fk_fields</span> <span class="o">=</span> <span class="n">model_describe</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;fk_fields&quot;</span><span class="p">)</span>
+        <span class="n">m2m_fields</span> <span class="o">=</span> <span class="n">model_describe</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;m2m_fields&quot;</span><span class="p">)</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="p">[</span><span class="n">pk_field</span><span class="p">]</span> <span class="o">+</span> <span class="n">data_fields</span> <span class="o">+</span> <span class="n">fk_fields</span> <span class="o">+</span> <span class="n">m2m_fields</span>
+        <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">fields</span><span class="p">:</span>
+            <span class="n">ret</span><span class="p">[</span><span class="n">field</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">)]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_field_type</span><span class="p">(</span>
+                <span class="n">field</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">),</span> <span class="n">field</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;field_type&quot;</span><span class="p">)</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="n">ret</span>
+
+    <span class="k">def</span> <span class="nf">_build_content_menus</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Menu</span><span class="p">]:</span>
+        <span class="n">models</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">models</span><span class="p">)</span>  <span class="c1"># type:Dict[str,Type[Model]]</span>
+        <span class="n">models</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;Role&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="n">models</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;User&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="n">models</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;Permission&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="n">menus</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">models</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">menu</span> <span class="o">=</span> <span class="n">Menu</span><span class="p">(</span>
+                <span class="n">name</span><span class="o">=</span><span class="n">v</span><span class="o">.</span><span class="n">_meta</span><span class="o">.</span><span class="n">table_description</span> <span class="ow">or</span> <span class="n">k</span><span class="p">,</span>
+                <span class="n">url</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;/rest/</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+                <span class="n">fields_type</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_model_fields_type</span><span class="p">(</span><span class="n">v</span><span class="p">),</span>
+                <span class="n">icon</span><span class="o">=</span><span class="s2">&quot;icon-list&quot;</span><span class="p">,</span>
+                <span class="n">bulk_actions</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;delete&quot;</span><span class="p">,</span> <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;delete_all&quot;</span><span class="p">,},],</span>
+            <span class="p">)</span>
+            <span class="n">menus</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">menu</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">menus</span>
+
+    <span class="k">def</span> <span class="nf">_build_default_menus</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">permission</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        build default menus when menus config not set</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">menus</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">Menu</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Home&quot;</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="n">icon</span><span class="o">=</span><span class="s2">&quot;fa fa-home&quot;</span><span class="p">),</span>
+            <span class="n">Menu</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Content&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+            <span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">_build_content_menus</span><span class="p">(),</span>
+            <span class="n">Menu</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;External&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+            <span class="n">Menu</span><span class="p">(</span>
+                <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Github&quot;</span><span class="p">,</span>
+                <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://github.com/long2ice/fastapi-admin&quot;</span><span class="p">,</span>
+                <span class="n">icon</span><span class="o">=</span><span class="s2">&quot;fa fa-github&quot;</span><span class="p">,</span>
+                <span class="n">external</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="p">),</span>
+        <span class="p">]</span>
+        <span class="k">if</span> <span class="n">permission</span><span class="p">:</span>
+            <span class="n">permission_menus</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="n">Menu</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Auth&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+                <span class="n">Menu</span><span class="p">(</span>
+                    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;User&quot;</span><span class="p">,</span>
+                    <span class="n">url</span><span class="o">=</span><span class="s2">&quot;/rest/User&quot;</span><span class="p">,</span>
+                    <span class="n">icon</span><span class="o">=</span><span class="s2">&quot;fa fa-user&quot;</span><span class="p">,</span>
+                    <span class="n">exclude</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;password&quot;</span><span class="p">,),</span>
+                    <span class="n">search_fields</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;username&quot;</span><span class="p">,),</span>
+                <span class="p">),</span>
+                <span class="n">Menu</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Role&quot;</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="s2">&quot;/rest/Role&quot;</span><span class="p">,</span> <span class="n">icon</span><span class="o">=</span><span class="s2">&quot;fa fa-group&quot;</span><span class="p">,</span> <span class="n">actions</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;delete&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">}),</span>
+                <span class="n">Menu</span><span class="p">(</span>
+                    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Permission&quot;</span><span class="p">,</span>
+                    <span class="n">url</span><span class="o">=</span><span class="s2">&quot;/rest/Permission&quot;</span><span class="p">,</span>
+                    <span class="n">icon</span><span class="o">=</span><span class="s2">&quot;fa fa-user-plus&quot;</span><span class="p">,</span>
+                    <span class="n">actions</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;delete&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">},</span>
+                <span class="p">),</span>
+                <span class="n">Menu</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Logout&quot;</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="s2">&quot;/logout&quot;</span><span class="p">,</span> <span class="n">icon</span><span class="o">=</span><span class="s2">&quot;fa fa-lock&quot;</span><span class="p">,),</span>
+            <span class="p">]</span>
+            <span class="n">menus</span> <span class="o">+=</span> <span class="n">permission_menus</span>
+        <span class="k">return</span> <span class="n">menus</span>
+
+<div class="viewcode-block" id="AdminApp.init"><a class="viewcode-back" href="../../fastapi_admin.html#fastapi_admin.factory.AdminApp.init">[docs]</a>    <span class="k">def</span> <span class="nf">init</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">site</span><span class="p">:</span> <span class="n">Site</span><span class="p">,</span>
+        <span class="n">admin_secret</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">user_model</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;User&quot;</span><span class="p">,</span>
+        <span class="n">permission</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">tortoise_app</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;models&quot;</span><span class="p">,</span>
+        <span class="n">login_view</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        init admin site</span>
+<span class="sd">        :param login_view:</span>
+<span class="sd">        :param tortoise_app:</span>
+<span class="sd">        :param permission: active builtin permission</span>
+<span class="sd">        :param site:</span>
+<span class="sd">        :param user_model: admin user model path,like admin.models.user</span>
+<span class="sd">        :param admin_secret: admin jwt secret.</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">site</span> <span class="o">=</span> <span class="n">site</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">permission</span> <span class="o">=</span> <span class="n">permission</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">admin_secret</span> <span class="o">=</span> <span class="n">admin_secret</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">models</span> <span class="o">=</span> <span class="n">Tortoise</span><span class="o">.</span><span class="n">apps</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">tortoise_app</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">user_model</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">user_model</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_inited</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">site</span><span class="o">.</span><span class="n">menus</span><span class="p">:</span>
+            <span class="n">site</span><span class="o">.</span><span class="n">menus</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_build_default_menus</span><span class="p">(</span><span class="n">permission</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_get_model_menu_mapping</span><span class="p">(</span><span class="n">site</span><span class="o">.</span><span class="n">menus</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">login_view</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add_api_route</span><span class="p">(</span><span class="s2">&quot;/login&quot;</span><span class="p">,</span> <span class="n">import_obj</span><span class="p">(</span><span class="n">login_view</span><span class="p">),</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;POST&quot;</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add_api_route</span><span class="p">(</span><span class="s2">&quot;/login&quot;</span><span class="p">,</span> <span class="n">login</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;POST&quot;</span><span class="p">])</span></div>
+
+    <span class="k">def</span> <span class="nf">_exclude_field</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">resource</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">field</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        exclude field by menu include and exclude</span>
+<span class="sd">        :param resource:</span>
+<span class="sd">        :param field:</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">menu</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_menu_mapping</span><span class="p">[</span><span class="n">resource</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">menu</span><span class="o">.</span><span class="n">include</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">field</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">menu</span><span class="o">.</span><span class="n">include</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">if</span> <span class="n">menu</span><span class="o">.</span><span class="n">exclude</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">menu</span><span class="o">.</span><span class="n">exclude</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="k">def</span> <span class="nf">_get_field_type</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">field_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">menu</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Menu</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        get field display type</span>
+<span class="sd">        :param menu:</span>
+<span class="sd">        :param field_type:</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">field_type</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_field_type_mapping</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">field_type</span><span class="p">)</span> <span class="ow">or</span> <span class="s2">&quot;text&quot;</span>
+        <span class="k">if</span> <span class="n">menu</span><span class="p">:</span>
+            <span class="n">field_type</span> <span class="o">=</span> <span class="n">menu</span><span class="o">.</span><span class="n">fields_type</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="ow">or</span> <span class="n">field_type</span>
+        <span class="k">return</span> <span class="n">field_type</span>
+
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">_build_resource_from_model_describe</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">resource</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">model</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">Model</span><span class="p">],</span>
+        <span class="n">model_describe</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span>
+        <span class="n">exclude_pk</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
+        <span class="n">exclude_m2m_field</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">exclude_actions</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        build resource</span>
+<span class="sd">        :param resource:</span>
+<span class="sd">        :param model:</span>
+<span class="sd">        :param model_describe:</span>
+<span class="sd">        :param exclude_pk:</span>
+<span class="sd">        :param exclude_m2m_field:</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">data_fields</span> <span class="o">=</span> <span class="n">model_describe</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;data_fields&quot;</span><span class="p">)</span>
+        <span class="n">pk_field</span> <span class="o">=</span> <span class="n">model_describe</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;pk_field&quot;</span><span class="p">)</span>
+        <span class="n">fk_fields</span> <span class="o">=</span> <span class="n">model_describe</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;fk_fields&quot;</span><span class="p">)</span>
+        <span class="n">m2m_fields</span> <span class="o">=</span> <span class="n">model_describe</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;m2m_fields&quot;</span><span class="p">)</span>
+        <span class="n">menu</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_menu_mapping</span><span class="p">[</span><span class="n">resource</span><span class="p">]</span>
+        <span class="n">search_fields_ret</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">search_fields</span> <span class="o">=</span> <span class="n">menu</span><span class="o">.</span><span class="n">search_fields</span>
+        <span class="n">sort_fields</span> <span class="o">=</span> <span class="n">menu</span><span class="o">.</span><span class="n">sort_fields</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">pk</span> <span class="o">=</span> <span class="n">name</span> <span class="o">=</span> <span class="n">pk_field</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">exclude_pk</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_exclude_field</span><span class="p">(</span><span class="n">resource</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+            <span class="n">fields</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="n">name</span><span class="p">:</span> <span class="n">Field</span><span class="p">(</span>
+                    <span class="n">label</span><span class="o">=</span><span class="n">pk_field</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">title</span><span class="p">(),</span>
+                    <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                    <span class="nb">type</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_field_type</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">pk_field</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;field_type&quot;</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">menu</span><span class="p">),</span>
+                    <span class="n">sortable</span><span class="o">=</span><span class="n">name</span> <span class="ow">in</span> <span class="n">sort_fields</span><span class="p">,</span>
+                    <span class="o">**</span><span class="n">menu</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="ow">or</span> <span class="p">{},</span>
+                <span class="p">)</span>
+            <span class="p">}</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">exclude_actions</span> <span class="ow">and</span> <span class="n">menu</span><span class="o">.</span><span class="n">actions</span><span class="p">:</span>
+            <span class="n">fields</span><span class="p">[</span><span class="s2">&quot;_actions&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">menu</span><span class="o">.</span><span class="n">actions</span>
+
+        <span class="k">for</span> <span class="n">data_field</span> <span class="ow">in</span> <span class="n">data_fields</span><span class="p">:</span>
+            <span class="n">readonly</span> <span class="o">=</span> <span class="n">data_field</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;constraints&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;readOnly&quot;</span><span class="p">)</span>
+            <span class="n">field_type</span> <span class="o">=</span> <span class="n">data_field</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;field_type&quot;</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span>
+            <span class="n">name</span> <span class="o">=</span> <span class="n">data_field</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_exclude_field</span><span class="p">(</span><span class="n">resource</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+                <span class="k">continue</span>
+
+            <span class="n">type_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_field_type</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">field_type</span><span class="p">,</span> <span class="n">menu</span><span class="p">)</span>
+            <span class="n">options</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">if</span> <span class="n">type_</span> <span class="o">==</span> <span class="s2">&quot;select&quot;</span> <span class="ow">or</span> <span class="n">type_</span> <span class="o">==</span> <span class="s2">&quot;radiolist&quot;</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">_meta</span><span class="o">.</span><span class="n">fields_map</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">enum_type</span><span class="o">.</span><span class="n">choices</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                    <span class="n">options</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="n">v</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">k</span><span class="p">})</span>
+
+            <span class="n">label</span> <span class="o">=</span> <span class="n">data_field</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;description&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">data_field</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">title</span><span class="p">()</span>
+            <span class="n">field</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+                <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">,</span>
+                <span class="n">required</span><span class="o">=</span><span class="ow">not</span> <span class="n">data_field</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;nullable&quot;</span><span class="p">),</span>
+                <span class="nb">type</span><span class="o">=</span><span class="n">type_</span><span class="p">,</span>
+                <span class="n">options</span><span class="o">=</span><span class="n">options</span><span class="p">,</span>
+                <span class="n">sortable</span><span class="o">=</span><span class="n">name</span> <span class="ow">in</span> <span class="n">sort_fields</span><span class="p">,</span>
+                <span class="n">disabled</span><span class="o">=</span><span class="n">readonly</span><span class="p">,</span>
+                <span class="o">**</span><span class="n">menu</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="ow">or</span> <span class="p">{},</span>
+            <span class="p">)</span>
+            <span class="n">fields</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span>
+            <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">search_fields</span><span class="p">:</span>
+                <span class="n">search_fields_ret</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span>
+
+        <span class="k">for</span> <span class="n">fk_field</span> <span class="ow">in</span> <span class="n">fk_fields</span><span class="p">:</span>
+            <span class="n">name</span> <span class="o">=</span> <span class="n">fk_field</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_exclude_field</span><span class="p">(</span><span class="n">resource</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">menu</span><span class="o">.</span><span class="n">raw_id_fields</span><span class="p">:</span>
+                    <span class="n">fk_model_class</span> <span class="o">=</span> <span class="n">fk_field</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;python_type&quot;</span><span class="p">)</span>
+                    <span class="n">objs</span> <span class="o">=</span> <span class="k">await</span> <span class="n">fk_model_class</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+                    <span class="n">raw_field</span> <span class="o">=</span> <span class="n">fk_field</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;raw_field&quot;</span><span class="p">)</span>
+                    <span class="n">label</span> <span class="o">=</span> <span class="n">fk_field</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;description&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">name</span><span class="o">.</span><span class="n">title</span><span class="p">()</span>
+                    <span class="n">options</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">pk</span><span class="p">},</span> <span class="n">objs</span><span class="p">))</span>
+                    <span class="n">field</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+                        <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">,</span>
+                        <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                        <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;select&quot;</span><span class="p">,</span>
+                        <span class="n">options</span><span class="o">=</span><span class="n">options</span><span class="p">,</span>
+                        <span class="n">sortable</span><span class="o">=</span><span class="n">name</span> <span class="ow">in</span> <span class="n">sort_fields</span><span class="p">,</span>
+                        <span class="o">**</span><span class="n">menu</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="ow">or</span> <span class="p">{},</span>
+                    <span class="p">)</span>
+                    <span class="n">fields</span><span class="p">[</span><span class="n">raw_field</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span>
+                    <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">search_fields</span><span class="p">:</span>
+                        <span class="n">search_fields_ret</span><span class="p">[</span><span class="n">raw_field</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">exclude_m2m_field</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">m2m_field</span> <span class="ow">in</span> <span class="n">m2m_fields</span><span class="p">:</span>
+                <span class="n">name</span> <span class="o">=</span> <span class="n">m2m_field</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_exclude_field</span><span class="p">(</span><span class="n">resource</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+                    <span class="n">label</span> <span class="o">=</span> <span class="n">m2m_field</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;description&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">name</span><span class="o">.</span><span class="n">title</span><span class="p">()</span>
+                    <span class="n">m2m_model_class</span> <span class="o">=</span> <span class="n">m2m_field</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;python_type&quot;</span><span class="p">)</span>
+                    <span class="n">objs</span> <span class="o">=</span> <span class="k">await</span> <span class="n">m2m_model_class</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+                    <span class="n">options</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">pk</span><span class="p">},</span> <span class="n">objs</span><span class="p">))</span>
+                    <span class="n">fields</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+                        <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">,</span>
+                        <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;tree&quot;</span><span class="p">,</span>
+                        <span class="n">options</span><span class="o">=</span><span class="n">options</span><span class="p">,</span>
+                        <span class="n">multiple</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                        <span class="o">**</span><span class="n">menu</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="ow">or</span> <span class="p">{},</span>
+                    <span class="p">)</span>
+        <span class="k">return</span> <span class="n">pk</span><span class="p">,</span> <span class="n">fields</span><span class="p">,</span> <span class="n">search_fields_ret</span>
+
+<div class="viewcode-block" id="AdminApp.get_resource"><a class="viewcode-back" href="../../fastapi_admin.html#fastapi_admin.factory.AdminApp.get_resource">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_resource</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">resource</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">exclude_pk</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">exclude_m2m_field</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exclude_actions</span><span class="o">=</span><span class="kc">False</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Resource</span><span class="p">:</span>
+        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">_inited</span><span class="p">,</span> <span class="s2">&quot;must call init() first!&quot;</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">resource</span><span class="p">)</span>  <span class="c1"># type:Type[Model]</span>
+        <span class="n">model_describe</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">describe</span><span class="p">(</span><span class="n">serializable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">pk</span><span class="p">,</span> <span class="n">fields</span><span class="p">,</span> <span class="n">search_fields</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_build_resource_from_model_describe</span><span class="p">(</span>
+            <span class="n">resource</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">model_describe</span><span class="p">,</span> <span class="n">exclude_pk</span><span class="p">,</span> <span class="n">exclude_m2m_field</span><span class="p">,</span> <span class="n">exclude_actions</span>
+        <span class="p">)</span>
+        <span class="n">menu</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_menu_mapping</span><span class="p">[</span><span class="n">resource</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">Resource</span><span class="p">(</span>
+            <span class="n">title</span><span class="o">=</span><span class="n">model_describe</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;description&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">resource</span><span class="o">.</span><span class="n">title</span><span class="p">(),</span>
+            <span class="n">fields</span><span class="o">=</span><span class="n">fields</span><span class="p">,</span>
+            <span class="n">searchFields</span><span class="o">=</span><span class="n">search_fields</span><span class="p">,</span>
+            <span class="n">pk</span><span class="o">=</span><span class="n">pk</span><span class="p">,</span>
+            <span class="n">bulk_actions</span><span class="o">=</span><span class="n">menu</span><span class="o">.</span><span class="n">bulk_actions</span><span class="p">,</span>
+            <span class="n">export</span><span class="o">=</span><span class="n">menu</span><span class="o">.</span><span class="n">export</span><span class="p">,</span>
+        <span class="p">)</span></div></div>
+
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">AdminApp</span><span class="p">(</span>
+    <span class="n">openapi_prefix</span><span class="o">=</span><span class="s2">&quot;/admin&quot;</span><span class="p">,</span>
+    <span class="n">debug</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;FastAPI-Admin&quot;</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="s2">&quot;FastAPI Admin Dashboard based on FastAPI and Tortoise ORM.&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">add_exception_handler</span><span class="p">(</span><span class="n">HTTPException</span><span class="p">,</span> <span class="n">exception_handler</span><span class="p">)</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, long2ice
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
