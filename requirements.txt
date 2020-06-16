@@ -1,0 +1,14 @@
+tortoise-orm 
+aiomysql 
+python-dotenv 
+#uvloop 
+python-rapidjson 
+fastapi
+aiosqlite 
+passlib 
+bcrypt 
+pyjwt 
+xlsxwriter 
+colorama 
+prompt_toolkit
+aiofiles
