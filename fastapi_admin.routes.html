@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>fastapi_admin.routes package &mdash; fastapi-admin v0.2.5 documentation</title>
+  <title>fastapi_admin.routes package &mdash; fastapi-admin  documentation</title>
   
 
   
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                v0.2.5
+                latest
               </div>
             
           
@@ -188,22 +188,22 @@
 <span id="fastapi-admin-routes-rest-module"></span><h2>fastapi_admin.routes.rest module<a class="headerlink" href="#module-fastapi_admin.routes.rest" title="Permalink to this headline">¶</a></h2>
 <dl class="py function">
 <dt id="fastapi_admin.routes.rest.bulk_delete">
-<em class="property">async </em><code class="sig-prename descclassname">fastapi_admin.routes.rest.</code><code class="sig-name descname">bulk_delete</code><span class="sig-paren">(</span><em class="sig-param">bulk_in: fastapi_admin.schemas.BulkIn</em>, <em class="sig-param">model=&lt;fastapi.params.Depends object&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fastapi_admin/routes/rest.html#bulk_delete"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastapi_admin.routes.rest.bulk_delete" title="Permalink to this definition">¶</a></dt>
+<em class="property">async </em><code class="sig-prename descclassname">fastapi_admin.routes.rest.</code><code class="sig-name descname">bulk_delete</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">bulk_in</span><span class="p">:</span> <span class="n"><a class="reference internal" href="fastapi_admin.html#fastapi_admin.schemas.BulkIn" title="fastapi_admin.schemas.BulkIn">fastapi_admin.schemas.BulkIn</a></span></em>, <em class="sig-param"><span class="n">model</span><span class="o">=</span><span class="default_value">Depends(get_model)</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fastapi_admin/routes/rest.html#bulk_delete"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastapi_admin.routes.rest.bulk_delete" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
 <dt id="fastapi_admin.routes.rest.create_one">
-<em class="property">async </em><code class="sig-prename descclassname">fastapi_admin.routes.rest.</code><code class="sig-name descname">create_one</code><span class="sig-paren">(</span><em class="sig-param">parsed=&lt;fastapi.params.Depends object&gt;</em>, <em class="sig-param">model=&lt;fastapi.params.Depends object&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fastapi_admin/routes/rest.html#create_one"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastapi_admin.routes.rest.create_one" title="Permalink to this definition">¶</a></dt>
+<em class="property">async </em><code class="sig-prename descclassname">fastapi_admin.routes.rest.</code><code class="sig-name descname">create_one</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">parsed</span><span class="o">=</span><span class="default_value">Depends(parse_body)</span></em>, <em class="sig-param"><span class="n">model</span><span class="o">=</span><span class="default_value">Depends(get_model)</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fastapi_admin/routes/rest.html#create_one"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastapi_admin.routes.rest.create_one" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
 <dt id="fastapi_admin.routes.rest.delete_one">
-<em class="property">async </em><code class="sig-prename descclassname">fastapi_admin.routes.rest.</code><code class="sig-name descname">delete_one</code><span class="sig-paren">(</span><em class="sig-param">id: int</em>, <em class="sig-param">model=&lt;fastapi.params.Depends object&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fastapi_admin/routes/rest.html#delete_one"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastapi_admin.routes.rest.delete_one" title="Permalink to this definition">¶</a></dt>
+<em class="property">async </em><code class="sig-prename descclassname">fastapi_admin.routes.rest.</code><code class="sig-name descname">delete_one</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">id</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">model</span><span class="o">=</span><span class="default_value">Depends(get_model)</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fastapi_admin/routes/rest.html#delete_one"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastapi_admin.routes.rest.delete_one" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
 <dt id="fastapi_admin.routes.rest.export">
-<em class="property">async </em><code class="sig-prename descclassname">fastapi_admin.routes.rest.</code><code class="sig-name descname">export</code><span class="sig-paren">(</span><em class="sig-param">resource: str</em>, <em class="sig-param">query: fastapi_admin.depends.QueryItem = &lt;fastapi.params.Depends object&gt;</em>, <em class="sig-param">model=&lt;fastapi.params.Depends object&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fastapi_admin/routes/rest.html#export"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastapi_admin.routes.rest.export" title="Permalink to this definition">¶</a></dt>
+<em class="property">async </em><code class="sig-prename descclassname">fastapi_admin.routes.rest.</code><code class="sig-name descname">export</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">resource</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">query</span><span class="p">:</span> <span class="n"><a class="reference internal" href="fastapi_admin.html#fastapi_admin.depends.QueryItem" title="fastapi_admin.depends.QueryItem">fastapi_admin.depends.QueryItem</a></span> <span class="o">=</span> <span class="default_value">Depends(get_query)</span></em>, <em class="sig-param"><span class="n">model</span><span class="o">=</span><span class="default_value">Depends(get_model)</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fastapi_admin/routes/rest.html#export"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastapi_admin.routes.rest.export" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
@@ -213,12 +213,12 @@
 
 <dl class="py function">
 <dt id="fastapi_admin.routes.rest.get_one">
-<em class="property">async </em><code class="sig-prename descclassname">fastapi_admin.routes.rest.</code><code class="sig-name descname">get_one</code><span class="sig-paren">(</span><em class="sig-param">id: int</em>, <em class="sig-param">resource: str</em>, <em class="sig-param">model=&lt;fastapi.params.Depends object&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fastapi_admin/routes/rest.html#get_one"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastapi_admin.routes.rest.get_one" title="Permalink to this definition">¶</a></dt>
+<em class="property">async </em><code class="sig-prename descclassname">fastapi_admin.routes.rest.</code><code class="sig-name descname">get_one</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">id</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">resource</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">model</span><span class="o">=</span><span class="default_value">Depends(get_model)</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fastapi_admin/routes/rest.html#get_one"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastapi_admin.routes.rest.get_one" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
 <dt id="fastapi_admin.routes.rest.get_resource">
-<em class="property">async </em><code class="sig-prename descclassname">fastapi_admin.routes.rest.</code><code class="sig-name descname">get_resource</code><span class="sig-paren">(</span><em class="sig-param">resource: str</em>, <em class="sig-param">query: fastapi_admin.depends.QueryItem = &lt;fastapi.params.Depends object&gt;</em>, <em class="sig-param">model=&lt;fastapi.params.Depends object&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fastapi_admin/routes/rest.html#get_resource"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastapi_admin.routes.rest.get_resource" title="Permalink to this definition">¶</a></dt>
+<em class="property">async </em><code class="sig-prename descclassname">fastapi_admin.routes.rest.</code><code class="sig-name descname">get_resource</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">resource</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">query</span><span class="p">:</span> <span class="n"><a class="reference internal" href="fastapi_admin.html#fastapi_admin.depends.QueryItem" title="fastapi_admin.depends.QueryItem">fastapi_admin.depends.QueryItem</a></span> <span class="o">=</span> <span class="default_value">Depends(get_query)</span></em>, <em class="sig-param"><span class="n">model</span><span class="o">=</span><span class="default_value">Depends(get_model)</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fastapi_admin/routes/rest.html#get_resource"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastapi_admin.routes.rest.get_resource" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
@@ -228,7 +228,7 @@
 
 <dl class="py function">
 <dt id="fastapi_admin.routes.rest.update_one">
-<em class="property">async </em><code class="sig-prename descclassname">fastapi_admin.routes.rest.</code><code class="sig-name descname">update_one</code><span class="sig-paren">(</span><em class="sig-param">id: int</em>, <em class="sig-param">parsed=&lt;fastapi.params.Depends object&gt;</em>, <em class="sig-param">model=&lt;fastapi.params.Depends object&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fastapi_admin/routes/rest.html#update_one"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastapi_admin.routes.rest.update_one" title="Permalink to this definition">¶</a></dt>
+<em class="property">async </em><code class="sig-prename descclassname">fastapi_admin.routes.rest.</code><code class="sig-name descname">update_one</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">id</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">parsed</span><span class="o">=</span><span class="default_value">Depends(parse_body)</span></em>, <em class="sig-param"><span class="n">model</span><span class="o">=</span><span class="default_value">Depends(get_model)</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fastapi_admin/routes/rest.html#update_one"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastapi_admin.routes.rest.update_one" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
@@ -241,7 +241,7 @@
 <span id="fastapi-admin-routes-site-module"></span><h2>fastapi_admin.routes.site module<a class="headerlink" href="#module-fastapi_admin.routes.site" title="Permalink to this headline">¶</a></h2>
 <dl class="py function">
 <dt id="fastapi_admin.routes.site.site">
-<em class="property">async </em><code class="sig-prename descclassname">fastapi_admin.routes.site.</code><code class="sig-name descname">site</code><span class="sig-paren">(</span><em class="sig-param">user_id=&lt;fastapi.params.Depends object&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fastapi_admin/routes/site.html#site"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastapi_admin.routes.site.site" title="Permalink to this definition">¶</a></dt>
+<em class="property">async </em><code class="sig-prename descclassname">fastapi_admin.routes.site.</code><code class="sig-name descname">site</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">user_id</span><span class="o">=</span><span class="default_value">Depends(jwt_optional)</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fastapi_admin/routes/site.html#site"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastapi_admin.routes.site.site" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </div>

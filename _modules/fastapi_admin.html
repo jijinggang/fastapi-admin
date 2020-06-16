@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Overview: module code &mdash; fastapi-admin  documentation</title>
+  <title>fastapi_admin &mdash; fastapi-admin  documentation</title>
   
 
   
@@ -132,7 +132,9 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>Overview: module code</li>
+          <li><a href="index.html">Module code</a> &raquo;</li>
+        
+      <li>fastapi_admin</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -147,22 +149,17 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <h1>All modules for which code is available</h1>
-<ul><li><a href="fastapi_admin.html">fastapi_admin</a></li>
-<ul><li><a href="fastapi_admin/cli.html">fastapi_admin.cli</a></li>
-<li><a href="fastapi_admin/common.html">fastapi_admin.common</a></li>
-<li><a href="fastapi_admin/depends.html">fastapi_admin.depends</a></li>
-<li><a href="fastapi_admin/enums.html">fastapi_admin.enums</a></li>
-<li><a href="fastapi_admin/exceptions.html">fastapi_admin.exceptions</a></li>
-<li><a href="fastapi_admin/factory.html">fastapi_admin.factory</a></li>
-<li><a href="fastapi_admin/models.html">fastapi_admin.models</a></li>
-<li><a href="fastapi_admin/responses.html">fastapi_admin.responses</a></li>
-<li><a href="fastapi_admin/routes/rest.html">fastapi_admin.routes.rest</a></li>
-<li><a href="fastapi_admin/routes/site.html">fastapi_admin.routes.site</a></li>
-<li><a href="fastapi_admin/schemas.html">fastapi_admin.schemas</a></li>
-<li><a href="fastapi_admin/shortcuts.html">fastapi_admin.shortcuts</a></li>
-<li><a href="fastapi_admin/site.html">fastapi_admin.site</a></li>
-</ul></ul>
+  <h1>Source code for fastapi_admin</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">re</span>
+
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">routes</span>
+
+
+<div class="viewcode-block" id="version"><a class="viewcode-back" href="../fastapi_admin.html#fastapi_admin.version">[docs]</a><span class="k">def</span> <span class="nf">version</span><span class="p">():</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;pyproject.toml&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">ret</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s1">&#39;version = &quot;(\d+\.\d+\.\d+)&quot;&#39;</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+        <span class="k">return</span> <span class="n">ret</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span></div>
+</pre></div>
 
            </div>
            

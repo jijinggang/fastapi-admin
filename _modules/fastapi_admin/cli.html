@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>fastapi_admin.cli &mdash; fastapi-admin v0.2.5 documentation</title>
+  <title>fastapi_admin.cli &mdash; fastapi-admin  documentation</title>
   
 
   
@@ -58,7 +58,7 @@
             
             
               <div class="version">
-                v0.2.5
+                latest
               </div>
             
           
@@ -134,6 +134,8 @@
         
           <li><a href="../index.html">Module code</a> &raquo;</li>
         
+          <li><a href="../fastapi_admin.html">fastapi_admin</a> &raquo;</li>
+        
       <li>fastapi_admin.cli</li>
     
     
@@ -157,7 +159,7 @@
 <span class="kn">from</span> <span class="nn">prompt_toolkit</span> <span class="kn">import</span> <span class="n">PromptSession</span>
 <span class="kn">from</span> <span class="nn">tortoise</span> <span class="kn">import</span> <span class="n">Tortoise</span><span class="p">,</span> <span class="n">run_async</span>
 
-<span class="kn">from</span> <span class="nn">fastapi_admin</span> <span class="kn">import</span> <span class="n">enums</span>
+<span class="kn">from</span> <span class="nn">fastapi_admin</span> <span class="kn">import</span> <span class="n">enums</span><span class="p">,</span> <span class="n">version</span>
 <span class="kn">from</span> <span class="nn">fastapi_admin.common</span> <span class="kn">import</span> <span class="n">import_obj</span><span class="p">,</span> <span class="n">pwd_context</span>
 <span class="kn">from</span> <span class="nn">fastapi_admin.models</span> <span class="kn">import</span> <span class="n">Permission</span>
 
@@ -231,7 +233,13 @@
         <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
         <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Tortoise-orm config dict import path,like settings.TORTOISE_ORM.&quot;</span><span class="p">,</span>
     <span class="p">)</span>
-
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;--version&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;-V&quot;</span><span class="p">,</span>
+        <span class="n">action</span><span class="o">=</span><span class="s2">&quot;version&quot;</span><span class="p">,</span>
+        <span class="n">version</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;fastapi-admin version, </span><span class="si">{</span><span class="n">version</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;show the version&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
     <span class="n">parser_register_permissions</span> <span class="o">=</span> <span class="n">subparsers</span><span class="o">.</span><span class="n">add_parser</span><span class="p">(</span><span class="s2">&quot;register_permissions&quot;</span><span class="p">)</span>
     <span class="n">parser_register_permissions</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
         <span class="s2">&quot;--clean&quot;</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Clean up old permissions then renew.&quot;</span>

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>fastapi_admin package &mdash; fastapi-admin v0.2.5 documentation</title>
+  <title>fastapi_admin package &mdash; fastapi-admin  documentation</title>
   
 
   
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                v0.2.5
+                latest
               </div>
             
           
@@ -278,7 +278,7 @@
 
 <dl class="py class">
 <dt id="fastapi_admin.depends.QueryItem">
-<em class="property">class </em><code class="sig-prename descclassname">fastapi_admin.depends.</code><code class="sig-name descname">QueryItem</code><a class="reference internal" href="_modules/fastapi_admin/depends.html#QueryItem"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastapi_admin.depends.QueryItem" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">fastapi_admin.depends.</code><code class="sig-name descname">QueryItem</code><span class="sig-paren">(</span><em class="sig-param">*</em>, <em class="sig-param">page: int = 1</em>, <em class="sig-param">sort: dict = {}</em>, <em class="sig-param">where: dict = {}</em>, <em class="sig-param">with: dict = {}</em>, <em class="sig-param">size: int = 10</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fastapi_admin/depends.html#QueryItem"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastapi_admin.depends.QueryItem" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">pydantic.main.BaseModel</span></code></p>
 <dl class="py class">
 <dt id="fastapi_admin.depends.QueryItem.Config">
@@ -293,44 +293,44 @@
 
 <dl class="py attribute">
 <dt id="fastapi_admin.depends.QueryItem.page">
-<code class="sig-name descname">page</code><em class="property">: int</em><em class="property"> = None</em><a class="headerlink" href="#fastapi_admin.depends.QueryItem.page" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">page</code><em class="property">: int</em><a class="headerlink" href="#fastapi_admin.depends.QueryItem.page" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="fastapi_admin.depends.QueryItem.size">
-<code class="sig-name descname">size</code><em class="property">: int</em><em class="property"> = None</em><a class="headerlink" href="#fastapi_admin.depends.QueryItem.size" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">size</code><em class="property">: int</em><a class="headerlink" href="#fastapi_admin.depends.QueryItem.size" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="fastapi_admin.depends.QueryItem.sort">
-<code class="sig-name descname">sort</code><em class="property">: dict</em><em class="property"> = None</em><a class="headerlink" href="#fastapi_admin.depends.QueryItem.sort" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">sort</code><em class="property">: dict</em><a class="headerlink" href="#fastapi_admin.depends.QueryItem.sort" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="fastapi_admin.depends.QueryItem.where">
-<code class="sig-name descname">where</code><em class="property">: dict</em><em class="property"> = None</em><a class="headerlink" href="#fastapi_admin.depends.QueryItem.where" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">where</code><em class="property">: dict</em><a class="headerlink" href="#fastapi_admin.depends.QueryItem.where" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="fastapi_admin.depends.QueryItem.with_">
-<code class="sig-name descname">with_</code><em class="property">: dict</em><em class="property"> = None</em><a class="headerlink" href="#fastapi_admin.depends.QueryItem.with_" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">with_</code><em class="property">: dict</em><a class="headerlink" href="#fastapi_admin.depends.QueryItem.with_" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="py function">
 <dt id="fastapi_admin.depends.get_current_user">
-<em class="property">async </em><code class="sig-prename descclassname">fastapi_admin.depends.</code><code class="sig-name descname">get_current_user</code><span class="sig-paren">(</span><em class="sig-param">user_id=&lt;fastapi.params.Depends object&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fastapi_admin/depends.html#get_current_user"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastapi_admin.depends.get_current_user" title="Permalink to this definition">¶</a></dt>
+<em class="property">async </em><code class="sig-prename descclassname">fastapi_admin.depends.</code><code class="sig-name descname">get_current_user</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">user_id</span><span class="o">=</span><span class="default_value">Depends(jwt_required)</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fastapi_admin/depends.html#get_current_user"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastapi_admin.depends.get_current_user" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
 <dt id="fastapi_admin.depends.get_model">
-<code class="sig-prename descclassname">fastapi_admin.depends.</code><code class="sig-name descname">get_model</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">resource</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">Path(default=Ellipsis, extra={})</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fastapi_admin/depends.html#get_model"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastapi_admin.depends.get_model" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">fastapi_admin.depends.</code><code class="sig-name descname">get_model</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">resource</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">Path(Ellipsis)</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fastapi_admin/depends.html#get_model"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastapi_admin.depends.get_model" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
 <dt id="fastapi_admin.depends.get_query">
-<code class="sig-prename descclassname">fastapi_admin.depends.</code><code class="sig-name descname">get_query</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">query</span><span class="o">=</span><span class="default_value">Query(default=Ellipsis, extra={})</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fastapi_admin/depends.html#get_query"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastapi_admin.depends.get_query" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">fastapi_admin.depends.</code><code class="sig-name descname">get_query</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">query</span><span class="o">=</span><span class="default_value">Query(Ellipsis)</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fastapi_admin/depends.html#get_query"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastapi_admin.depends.get_query" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
@@ -340,12 +340,12 @@
 
 <dl class="py function">
 <dt id="fastapi_admin.depends.jwt_required">
-<em class="property">async </em><code class="sig-prename descclassname">fastapi_admin.depends.</code><code class="sig-name descname">jwt_required</code><span class="sig-paren">(</span><em class="sig-param">request: starlette.requests.Request</em>, <em class="sig-param">token: fastapi.security.http.HTTPAuthorizationCredentials = &lt;fastapi.params.Depends object&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fastapi_admin/depends.html#jwt_required"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastapi_admin.depends.jwt_required" title="Permalink to this definition">¶</a></dt>
+<em class="property">async </em><code class="sig-prename descclassname">fastapi_admin.depends.</code><code class="sig-name descname">jwt_required</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">request</span><span class="p">:</span> <span class="n">starlette.requests.Request</span></em>, <em class="sig-param"><span class="n">token</span><span class="p">:</span> <span class="n">fastapi.security.http.HTTPAuthorizationCredentials</span> <span class="o">=</span> <span class="default_value">Depends(HTTPBearer)</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fastapi_admin/depends.html#jwt_required"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastapi_admin.depends.jwt_required" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
 <dt id="fastapi_admin.depends.parse_body">
-<em class="property">async </em><code class="sig-prename descclassname">fastapi_admin.depends.</code><code class="sig-name descname">parse_body</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">request</span><span class="p">:</span> <span class="n">starlette.requests.Request</span></em>, <em class="sig-param"><span class="n">resource</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">Path(default=Ellipsis, extra={})</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fastapi_admin/depends.html#parse_body"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastapi_admin.depends.parse_body" title="Permalink to this definition">¶</a></dt>
+<em class="property">async </em><code class="sig-prename descclassname">fastapi_admin.depends.</code><code class="sig-name descname">parse_body</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">request</span><span class="p">:</span> <span class="n">starlette.requests.Request</span></em>, <em class="sig-param"><span class="n">resource</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">Path(Ellipsis)</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fastapi_admin/depends.html#parse_body"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastapi_admin.depends.parse_body" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </div>
@@ -364,7 +364,7 @@
 
 <dl class="py class">
 <dt id="fastapi_admin.enums.PermissionAction">
-<em class="property">class </em><code class="sig-prename descclassname">fastapi_admin.enums.</code><code class="sig-name descname">PermissionAction</code><a class="reference internal" href="_modules/fastapi_admin/enums.html#PermissionAction"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastapi_admin.enums.PermissionAction" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">fastapi_admin.enums.</code><code class="sig-name descname">PermissionAction</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fastapi_admin/enums.html#PermissionAction"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastapi_admin.enums.PermissionAction" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#fastapi_admin.enums.EnumMixin" title="fastapi_admin.enums.EnumMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">fastapi_admin.enums.EnumMixin</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">enum.IntEnum</span></code></p>
 <p>An enumeration.</p>
 <dl class="py attribute">
@@ -402,11 +402,11 @@
 <span id="fastapi-admin-factory-module"></span><h2>fastapi_admin.factory module<a class="headerlink" href="#module-fastapi_admin.factory" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
 <dt id="fastapi_admin.factory.AdminApp">
-<em class="property">class </em><code class="sig-prename descclassname">fastapi_admin.factory.</code><code class="sig-name descname">AdminApp</code><span class="sig-paren">(</span><em class="sig-param">*, debug: bool = False, routes: List[starlette.routing.BaseRoute] = None, title: str = 'FastAPI', description: str = '', version: str = '0.1.0', openapi_url: Optional[str] = '/openapi.json', openapi_prefix: str = '', default_response_class: Type[starlette.responses.Response] = &lt;class 'starlette.responses.JSONResponse'&gt;, docs_url: Optional[str] = '/docs', redoc_url: Optional[str] = '/redoc', swagger_ui_oauth2_redirect_url: Optional[str] = '/docs/oauth2-redirect', swagger_ui_init_oauth: Optional[dict] = None, middleware: Sequence[starlette.middleware.Middleware] = None, exception_handlers: Dict[Union[int, Type[Exception]], Callable] = None, on_startup: Sequence[Callable] = None, on_shutdown: Sequence[Callable] = None, **extra: Dict[str, Any]</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fastapi_admin/factory.html#AdminApp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastapi_admin.factory.AdminApp" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">fastapi_admin.factory.</code><code class="sig-name descname">AdminApp</code><span class="sig-paren">(</span><em class="sig-param">*, debug: bool = False, routes: List[starlette.routing.BaseRoute] = None, title: str = 'FastAPI', description: str = '', version: str = '0.1.0', openapi_url: Optional[str] = '/openapi.json', openapi_tags: Optional[List[Dict[str, Any]]] = None, servers: Optional[List[Dict[str, Union[Any, str]]]] = None, default_response_class: Type[starlette.responses.Response] = &lt;class 'starlette.responses.JSONResponse'&gt;, docs_url: Optional[str] = '/docs', redoc_url: Optional[str] = '/redoc', swagger_ui_oauth2_redirect_url: Optional[str] = '/docs/oauth2-redirect', swagger_ui_init_oauth: Optional[dict] = None, middleware: Sequence[starlette.middleware.Middleware] = None, exception_handlers: Dict[Union[int, Type[Exception]], Callable] = None, on_startup: Sequence[Callable] = None, on_shutdown: Sequence[Callable] = None, openapi_prefix: str = '', root_path: str = '', **extra: Dict[str, Any]</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fastapi_admin/factory.html#AdminApp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastapi_admin.factory.AdminApp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">fastapi.applications.FastAPI</span></code></p>
 <dl class="py attribute">
 <dt id="fastapi_admin.factory.AdminApp.admin_secret">
-<code class="sig-name descname">admin_secret</code><em class="property">: str</em><em class="property"> = None</em><a class="headerlink" href="#fastapi_admin.factory.AdminApp.admin_secret" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">admin_secret</code><em class="property">: str</em><a class="headerlink" href="#fastapi_admin.factory.AdminApp.admin_secret" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -429,27 +429,27 @@
 
 <dl class="py attribute">
 <dt id="fastapi_admin.factory.AdminApp.model_menu_mapping">
-<code class="sig-name descname">model_menu_mapping</code><em class="property">: Dict[str, fastapi_admin.site.Menu]</em><em class="property"> = {}</em><a class="headerlink" href="#fastapi_admin.factory.AdminApp.model_menu_mapping" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">model_menu_mapping</code><em class="property">: Dict<span class="p">[</span>str<span class="p">, </span><a class="reference internal" href="#fastapi_admin.site.Menu" title="fastapi_admin.site.Menu">fastapi_admin.site.Menu</a><span class="p">]</span></em><em class="property"> = {}</em><a class="headerlink" href="#fastapi_admin.factory.AdminApp.model_menu_mapping" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="fastapi_admin.factory.AdminApp.models">
-<code class="sig-name descname">models</code><em class="property">: Any</em><em class="property"> = None</em><a class="headerlink" href="#fastapi_admin.factory.AdminApp.models" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">models</code><em class="property">: Any</em><a class="headerlink" href="#fastapi_admin.factory.AdminApp.models" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="fastapi_admin.factory.AdminApp.permission">
-<code class="sig-name descname">permission</code><em class="property">: bool</em><em class="property"> = None</em><a class="headerlink" href="#fastapi_admin.factory.AdminApp.permission" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">permission</code><em class="property">: bool</em><a class="headerlink" href="#fastapi_admin.factory.AdminApp.permission" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="fastapi_admin.factory.AdminApp.site">
-<code class="sig-name descname">site</code><em class="property">: Site</em><em class="property"> = None</em><a class="headerlink" href="#fastapi_admin.factory.AdminApp.site" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">site</code><em class="property">: Site</em><a class="headerlink" href="#fastapi_admin.factory.AdminApp.site" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="fastapi_admin.factory.AdminApp.user_model">
-<code class="sig-name descname">user_model</code><em class="property">: Model</em><em class="property"> = None</em><a class="headerlink" href="#fastapi_admin.factory.AdminApp.user_model" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">user_model</code><em class="property">: Model</em><a class="headerlink" href="#fastapi_admin.factory.AdminApp.user_model" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -468,7 +468,7 @@
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">tortoise.models.Model</span></code></p>
 <dl class="py attribute">
 <dt id="fastapi_admin.models.Permission.action">
-<code class="sig-name descname">action</code><em class="property">: enums.PermissionAction</em><em class="property"> = None</em><a class="headerlink" href="#fastapi_admin.models.Permission.action" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">action</code><em class="property">: enums.PermissionAction</em><a class="headerlink" href="#fastapi_admin.models.Permission.action" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -479,7 +479,7 @@
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">tortoise.models.Model</span></code></p>
 <dl class="py attribute">
 <dt id="fastapi_admin.models.Role.permissions">
-<code class="sig-name descname">permissions</code><em class="property">: fields.ManyToManyRelation[Permission]</em><em class="property"> = None</em><a class="headerlink" href="#fastapi_admin.models.Role.permissions" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">permissions</code><em class="property">: fields.ManyToManyRelation<span class="p">[</span>Permission<span class="p">]</span></em><a class="headerlink" href="#fastapi_admin.models.Role.permissions" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -506,16 +506,16 @@
 <span id="fastapi-admin-responses-module"></span><h2>fastapi_admin.responses module<a class="headerlink" href="#module-fastapi_admin.responses" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
 <dt id="fastapi_admin.responses.GetManyOut">
-<em class="property">class </em><code class="sig-prename descclassname">fastapi_admin.responses.</code><code class="sig-name descname">GetManyOut</code><a class="reference internal" href="_modules/fastapi_admin/responses.html#GetManyOut"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastapi_admin.responses.GetManyOut" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">fastapi_admin.responses.</code><code class="sig-name descname">GetManyOut</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">total</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">data</span><span class="p">:</span> <span class="n">Sequence<span class="p">[</span>Dict<span class="p">]</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fastapi_admin/responses.html#GetManyOut"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastapi_admin.responses.GetManyOut" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">pydantic.main.BaseModel</span></code></p>
 <dl class="py attribute">
 <dt id="fastapi_admin.responses.GetManyOut.data">
-<code class="sig-name descname">data</code><em class="property">: Sequence[Dict]</em><em class="property"> = None</em><a class="headerlink" href="#fastapi_admin.responses.GetManyOut.data" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">data</code><em class="property">: Sequence<span class="p">[</span>Dict<span class="p">]</span></em><a class="headerlink" href="#fastapi_admin.responses.GetManyOut.data" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="fastapi_admin.responses.GetManyOut.total">
-<code class="sig-name descname">total</code><em class="property">: int</em><em class="property"> = None</em><a class="headerlink" href="#fastapi_admin.responses.GetManyOut.total" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">total</code><em class="property">: int</em><a class="headerlink" href="#fastapi_admin.responses.GetManyOut.total" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -525,27 +525,27 @@
 <span id="fastapi-admin-schemas-module"></span><h2>fastapi_admin.schemas module<a class="headerlink" href="#module-fastapi_admin.schemas" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
 <dt id="fastapi_admin.schemas.BulkIn">
-<em class="property">class </em><code class="sig-prename descclassname">fastapi_admin.schemas.</code><code class="sig-name descname">BulkIn</code><a class="reference internal" href="_modules/fastapi_admin/schemas.html#BulkIn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastapi_admin.schemas.BulkIn" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">fastapi_admin.schemas.</code><code class="sig-name descname">BulkIn</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">pk_list</span><span class="p">:</span> <span class="n">List</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fastapi_admin/schemas.html#BulkIn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastapi_admin.schemas.BulkIn" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">pydantic.main.BaseModel</span></code></p>
 <dl class="py attribute">
 <dt id="fastapi_admin.schemas.BulkIn.pk_list">
-<code class="sig-name descname">pk_list</code><em class="property">: List</em><em class="property"> = None</em><a class="headerlink" href="#fastapi_admin.schemas.BulkIn.pk_list" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">pk_list</code><em class="property">: List</em><a class="headerlink" href="#fastapi_admin.schemas.BulkIn.pk_list" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
 <dt id="fastapi_admin.schemas.LoginIn">
-<em class="property">class </em><code class="sig-prename descclassname">fastapi_admin.schemas.</code><code class="sig-name descname">LoginIn</code><a class="reference internal" href="_modules/fastapi_admin/schemas.html#LoginIn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastapi_admin.schemas.LoginIn" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">fastapi_admin.schemas.</code><code class="sig-name descname">LoginIn</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">username</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">password</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fastapi_admin/schemas.html#LoginIn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastapi_admin.schemas.LoginIn" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">pydantic.main.BaseModel</span></code></p>
 <dl class="py attribute">
 <dt id="fastapi_admin.schemas.LoginIn.password">
-<code class="sig-name descname">password</code><em class="property">: str</em><em class="property"> = None</em><a class="headerlink" href="#fastapi_admin.schemas.LoginIn.password" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">password</code><em class="property">: str</em><a class="headerlink" href="#fastapi_admin.schemas.LoginIn.password" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="fastapi_admin.schemas.LoginIn.username">
-<code class="sig-name descname">username</code><em class="property">: str</em><em class="property"> = None</em><a class="headerlink" href="#fastapi_admin.schemas.LoginIn.username" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">username</code><em class="property">: str</em><a class="headerlink" href="#fastapi_admin.schemas.LoginIn.username" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -574,159 +574,159 @@
 <span id="fastapi-admin-site-module"></span><h2>fastapi_admin.site module<a class="headerlink" href="#module-fastapi_admin.site" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
 <dt id="fastapi_admin.site.Field">
-<em class="property">class </em><code class="sig-prename descclassname">fastapi_admin.site.</code><code class="sig-name descname">Field</code><a class="reference internal" href="_modules/fastapi_admin/site.html#Field"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastapi_admin.site.Field" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">fastapi_admin.site.</code><code class="sig-name descname">Field</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">label</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">cols</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">input_cols</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">group</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">type</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">required</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">True</span></em>, <em class="sig-param"><span class="n">options</span><span class="p">:</span> <span class="n">List<span class="p">[</span>Dict<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">sortable</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">multiple</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em>, <em class="sig-param"><span class="n">ref</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">description</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">disabled</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fastapi_admin/site.html#Field"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastapi_admin.site.Field" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">pydantic.main.BaseModel</span></code></p>
 <dl class="py attribute">
 <dt id="fastapi_admin.site.Field.cols">
-<code class="sig-name descname">cols</code><em class="property">: Optional[int]</em><em class="property"> = None</em><a class="headerlink" href="#fastapi_admin.site.Field.cols" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">cols</code><em class="property">: Optional<span class="p">[</span>int<span class="p">]</span></em><a class="headerlink" href="#fastapi_admin.site.Field.cols" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="fastapi_admin.site.Field.description">
-<code class="sig-name descname">description</code><em class="property">: Optional[str]</em><em class="property"> = None</em><a class="headerlink" href="#fastapi_admin.site.Field.description" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">description</code><em class="property">: Optional<span class="p">[</span>str<span class="p">]</span></em><a class="headerlink" href="#fastapi_admin.site.Field.description" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="fastapi_admin.site.Field.disabled">
-<code class="sig-name descname">disabled</code><em class="property">: Optional[bool]</em><em class="property"> = None</em><a class="headerlink" href="#fastapi_admin.site.Field.disabled" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">disabled</code><em class="property">: Optional<span class="p">[</span>bool<span class="p">]</span></em><a class="headerlink" href="#fastapi_admin.site.Field.disabled" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="fastapi_admin.site.Field.group">
-<code class="sig-name descname">group</code><em class="property">: Optional[str]</em><em class="property"> = None</em><a class="headerlink" href="#fastapi_admin.site.Field.group" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">group</code><em class="property">: Optional<span class="p">[</span>str<span class="p">]</span></em><a class="headerlink" href="#fastapi_admin.site.Field.group" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="fastapi_admin.site.Field.input_cols">
-<code class="sig-name descname">input_cols</code><em class="property">: Optional[int]</em><em class="property"> = None</em><a class="headerlink" href="#fastapi_admin.site.Field.input_cols" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">input_cols</code><em class="property">: Optional<span class="p">[</span>int<span class="p">]</span></em><a class="headerlink" href="#fastapi_admin.site.Field.input_cols" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="fastapi_admin.site.Field.label">
-<code class="sig-name descname">label</code><em class="property">: str</em><em class="property"> = None</em><a class="headerlink" href="#fastapi_admin.site.Field.label" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">label</code><em class="property">: str</em><a class="headerlink" href="#fastapi_admin.site.Field.label" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="fastapi_admin.site.Field.multiple">
-<code class="sig-name descname">multiple</code><em class="property">: bool</em><em class="property"> = None</em><a class="headerlink" href="#fastapi_admin.site.Field.multiple" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">multiple</code><em class="property">: bool</em><a class="headerlink" href="#fastapi_admin.site.Field.multiple" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="fastapi_admin.site.Field.options">
-<code class="sig-name descname">options</code><em class="property">: Optional[List[Dict]]</em><em class="property"> = None</em><a class="headerlink" href="#fastapi_admin.site.Field.options" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">options</code><em class="property">: Optional<span class="p">[</span>List<span class="p">[</span>Dict<span class="p">]</span><span class="p">]</span></em><a class="headerlink" href="#fastapi_admin.site.Field.options" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="fastapi_admin.site.Field.ref">
-<code class="sig-name descname">ref</code><em class="property">: Optional[str]</em><em class="property"> = None</em><a class="headerlink" href="#fastapi_admin.site.Field.ref" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">ref</code><em class="property">: Optional<span class="p">[</span>str<span class="p">]</span></em><a class="headerlink" href="#fastapi_admin.site.Field.ref" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="fastapi_admin.site.Field.required">
-<code class="sig-name descname">required</code><em class="property">: bool</em><em class="property"> = None</em><a class="headerlink" href="#fastapi_admin.site.Field.required" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">required</code><em class="property">: bool</em><a class="headerlink" href="#fastapi_admin.site.Field.required" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="fastapi_admin.site.Field.sortable">
-<code class="sig-name descname">sortable</code><em class="property">: Optional[bool]</em><em class="property"> = None</em><a class="headerlink" href="#fastapi_admin.site.Field.sortable" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">sortable</code><em class="property">: Optional<span class="p">[</span>bool<span class="p">]</span></em><a class="headerlink" href="#fastapi_admin.site.Field.sortable" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="fastapi_admin.site.Field.type">
-<code class="sig-name descname">type</code><em class="property">: str</em><em class="property"> = None</em><a class="headerlink" href="#fastapi_admin.site.Field.type" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">type</code><em class="property">: str</em><a class="headerlink" href="#fastapi_admin.site.Field.type" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
 <dt id="fastapi_admin.site.Menu">
-<em class="property">class </em><code class="sig-prename descclassname">fastapi_admin.site.</code><code class="sig-name descname">Menu</code><a class="reference internal" href="_modules/fastapi_admin/site.html#Menu"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastapi_admin.site.Menu" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">fastapi_admin.site.</code><code class="sig-name descname">Menu</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">name</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">title</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">url</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">icon</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">children</span><span class="p">:</span> <span class="n">List<span class="p">[</span>Menu<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">[]</span></em>, <em class="sig-param"><span class="n">include</span><span class="p">:</span> <span class="n">Tuple<span class="p">[</span>str<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">exclude</span><span class="p">:</span> <span class="n">Tuple<span class="p">[</span>str<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">external</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em>, <em class="sig-param"><span class="n">raw_id_fields</span><span class="p">:</span> <span class="n">Tuple<span class="p">[</span>str<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">{}</span></em>, <em class="sig-param"><span class="n">search_fields</span><span class="p">:</span> <span class="n">Tuple<span class="p">[</span>str<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">{}</span></em>, <em class="sig-param"><span class="n">sort_fields</span><span class="p">:</span> <span class="n">Set<span class="p">[</span>str<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">{}</span></em>, <em class="sig-param"><span class="n">fields_type</span><span class="p">:</span> <span class="n">Dict</span> <span class="o">=</span> <span class="default_value">{}</span></em>, <em class="sig-param"><span class="n">attrs</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span>str<span class="p">, </span>Dict<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">{}</span></em>, <em class="sig-param"><span class="n">export</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">True</span></em>, <em class="sig-param"><span class="n">actions</span><span class="p">:</span> <span class="n">Dict</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">bulk_actions</span><span class="p">:</span> <span class="n">List<span class="p">[</span>Dict<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">[{'value': 'delete', 'text': 'delete_all'}]</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fastapi_admin/site.html#Menu"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastapi_admin.site.Menu" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">pydantic.main.BaseModel</span></code></p>
 <dl class="py attribute">
 <dt id="fastapi_admin.site.Menu.actions">
-<code class="sig-name descname">actions</code><em class="property">: Optional[Dict]</em><em class="property"> = None</em><a class="headerlink" href="#fastapi_admin.site.Menu.actions" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">actions</code><em class="property">: Optional<span class="p">[</span>Dict<span class="p">]</span></em><a class="headerlink" href="#fastapi_admin.site.Menu.actions" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="fastapi_admin.site.Menu.attrs">
-<code class="sig-name descname">attrs</code><em class="property">: Dict[str, Dict]</em><em class="property"> = None</em><a class="headerlink" href="#fastapi_admin.site.Menu.attrs" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">attrs</code><em class="property">: Dict<span class="p">[</span>str<span class="p">, </span>Dict<span class="p">]</span></em><a class="headerlink" href="#fastapi_admin.site.Menu.attrs" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="fastapi_admin.site.Menu.bulk_actions">
-<code class="sig-name descname">bulk_actions</code><em class="property">: List[Dict]</em><em class="property"> = None</em><a class="headerlink" href="#fastapi_admin.site.Menu.bulk_actions" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">bulk_actions</code><em class="property">: List<span class="p">[</span>Dict<span class="p">]</span></em><a class="headerlink" href="#fastapi_admin.site.Menu.bulk_actions" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="fastapi_admin.site.Menu.children">
-<code class="sig-name descname">children</code><em class="property">: Optional[List['Menu']]</em><em class="property"> = None</em><a class="headerlink" href="#fastapi_admin.site.Menu.children" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">children</code><em class="property">: Optional[List[‘Menu’]]</em><a class="headerlink" href="#fastapi_admin.site.Menu.children" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="fastapi_admin.site.Menu.exclude">
-<code class="sig-name descname">exclude</code><em class="property">: Optional[Tuple[str]]</em><em class="property"> = None</em><a class="headerlink" href="#fastapi_admin.site.Menu.exclude" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">exclude</code><em class="property">: Optional<span class="p">[</span>Tuple<span class="p">[</span>str<span class="p">]</span><span class="p">]</span></em><a class="headerlink" href="#fastapi_admin.site.Menu.exclude" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="fastapi_admin.site.Menu.export">
-<code class="sig-name descname">export</code><em class="property">: bool</em><em class="property"> = None</em><a class="headerlink" href="#fastapi_admin.site.Menu.export" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">export</code><em class="property">: bool</em><a class="headerlink" href="#fastapi_admin.site.Menu.export" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="fastapi_admin.site.Menu.external">
-<code class="sig-name descname">external</code><em class="property">: Optional[bool]</em><em class="property"> = None</em><a class="headerlink" href="#fastapi_admin.site.Menu.external" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">external</code><em class="property">: Optional<span class="p">[</span>bool<span class="p">]</span></em><a class="headerlink" href="#fastapi_admin.site.Menu.external" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="fastapi_admin.site.Menu.fields_type">
-<code class="sig-name descname">fields_type</code><em class="property">: Dict</em><em class="property"> = None</em><a class="headerlink" href="#fastapi_admin.site.Menu.fields_type" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">fields_type</code><em class="property">: Dict</em><a class="headerlink" href="#fastapi_admin.site.Menu.fields_type" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="fastapi_admin.site.Menu.icon">
-<code class="sig-name descname">icon</code><em class="property">: Optional[str]</em><em class="property"> = None</em><a class="headerlink" href="#fastapi_admin.site.Menu.icon" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">icon</code><em class="property">: Optional<span class="p">[</span>str<span class="p">]</span></em><a class="headerlink" href="#fastapi_admin.site.Menu.icon" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="fastapi_admin.site.Menu.include">
-<code class="sig-name descname">include</code><em class="property">: Optional[Tuple[str]]</em><em class="property"> = None</em><a class="headerlink" href="#fastapi_admin.site.Menu.include" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">include</code><em class="property">: Optional<span class="p">[</span>Tuple<span class="p">[</span>str<span class="p">]</span><span class="p">]</span></em><a class="headerlink" href="#fastapi_admin.site.Menu.include" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="fastapi_admin.site.Menu.name">
-<code class="sig-name descname">name</code><em class="property">: str</em><em class="property"> = None</em><a class="headerlink" href="#fastapi_admin.site.Menu.name" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">name</code><em class="property">: str</em><a class="headerlink" href="#fastapi_admin.site.Menu.name" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="fastapi_admin.site.Menu.raw_id_fields">
-<code class="sig-name descname">raw_id_fields</code><em class="property">: Optional[Tuple[str]]</em><em class="property"> = None</em><a class="headerlink" href="#fastapi_admin.site.Menu.raw_id_fields" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">raw_id_fields</code><em class="property">: Optional<span class="p">[</span>Tuple<span class="p">[</span>str<span class="p">]</span><span class="p">]</span></em><a class="headerlink" href="#fastapi_admin.site.Menu.raw_id_fields" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="fastapi_admin.site.Menu.search_fields">
-<code class="sig-name descname">search_fields</code><em class="property">: Optional[Tuple[str]]</em><em class="property"> = None</em><a class="headerlink" href="#fastapi_admin.site.Menu.search_fields" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">search_fields</code><em class="property">: Optional<span class="p">[</span>Tuple<span class="p">[</span>str<span class="p">]</span><span class="p">]</span></em><a class="headerlink" href="#fastapi_admin.site.Menu.search_fields" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="fastapi_admin.site.Menu.sort_fields">
-<code class="sig-name descname">sort_fields</code><em class="property">: Optional[Set[str]]</em><em class="property"> = None</em><a class="headerlink" href="#fastapi_admin.site.Menu.sort_fields" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">sort_fields</code><em class="property">: Optional<span class="p">[</span>Set<span class="p">[</span>str<span class="p">]</span><span class="p">]</span></em><a class="headerlink" href="#fastapi_admin.site.Menu.sort_fields" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="fastapi_admin.site.Menu.title">
-<code class="sig-name descname">title</code><em class="property">: Optional[bool]</em><em class="property"> = None</em><a class="headerlink" href="#fastapi_admin.site.Menu.title" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">title</code><em class="property">: Optional<span class="p">[</span>bool<span class="p">]</span></em><a class="headerlink" href="#fastapi_admin.site.Menu.title" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="fastapi_admin.site.Menu.url">
-<code class="sig-name descname">url</code><em class="property">: Optional[str]</em><em class="property"> = None</em><a class="headerlink" href="#fastapi_admin.site.Menu.url" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">url</code><em class="property">: Optional<span class="p">[</span>str<span class="p">]</span></em><a class="headerlink" href="#fastapi_admin.site.Menu.url" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
 <dt id="fastapi_admin.site.Resource">
-<em class="property">class </em><code class="sig-prename descclassname">fastapi_admin.site.</code><code class="sig-name descname">Resource</code><a class="reference internal" href="_modules/fastapi_admin/site.html#Resource"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastapi_admin.site.Resource" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">fastapi_admin.site.</code><code class="sig-name descname">Resource</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">title</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">pk</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">fields</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span>str<span class="p">, </span>Union<span class="p">[</span><a class="reference internal" href="#fastapi_admin.site.Field" title="fastapi_admin.site.Field">fastapi_admin.site.Field</a><span class="p">, </span>Dict<span class="p">]</span><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">searchFields</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span>str<span class="p">, </span><a class="reference internal" href="#fastapi_admin.site.Field" title="fastapi_admin.site.Field">fastapi_admin.site.Field</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">bulk_actions</span><span class="p">:</span> <span class="n">List<span class="p">[</span>Dict<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">export</span><span class="p">:</span> <span class="n">bool</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fastapi_admin/site.html#Resource"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastapi_admin.site.Resource" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">pydantic.main.BaseModel</span></code></p>
 <dl class="py class">
 <dt id="fastapi_admin.site.Resource.Config">
@@ -741,108 +741,108 @@
 
 <dl class="py attribute">
 <dt id="fastapi_admin.site.Resource.bulk_actions">
-<code class="sig-name descname">bulk_actions</code><em class="property">: Optional[List[Dict]]</em><em class="property"> = None</em><a class="headerlink" href="#fastapi_admin.site.Resource.bulk_actions" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">bulk_actions</code><em class="property">: Optional<span class="p">[</span>List<span class="p">[</span>Dict<span class="p">]</span><span class="p">]</span></em><a class="headerlink" href="#fastapi_admin.site.Resource.bulk_actions" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="fastapi_admin.site.Resource.export">
-<code class="sig-name descname">export</code><em class="property">: bool</em><em class="property"> = None</em><a class="headerlink" href="#fastapi_admin.site.Resource.export" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">export</code><em class="property">: bool</em><a class="headerlink" href="#fastapi_admin.site.Resource.export" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="fastapi_admin.site.Resource.pk">
-<code class="sig-name descname">pk</code><em class="property">: str</em><em class="property"> = None</em><a class="headerlink" href="#fastapi_admin.site.Resource.pk" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">pk</code><em class="property">: str</em><a class="headerlink" href="#fastapi_admin.site.Resource.pk" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="fastapi_admin.site.Resource.resource_fields">
-<code class="sig-name descname">resource_fields</code><em class="property">: Dict[str, Union[Field, Dict]]</em><em class="property"> = None</em><a class="headerlink" href="#fastapi_admin.site.Resource.resource_fields" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">resource_fields</code><em class="property">: Dict<span class="p">[</span>str<span class="p">, </span>Union<span class="p">[</span>Field<span class="p">, </span>Dict<span class="p">]</span><span class="p">]</span></em><a class="headerlink" href="#fastapi_admin.site.Resource.resource_fields" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="fastapi_admin.site.Resource.searchFields">
-<code class="sig-name descname">searchFields</code><em class="property">: Optional[Dict[str, Field]]</em><em class="property"> = None</em><a class="headerlink" href="#fastapi_admin.site.Resource.searchFields" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">searchFields</code><em class="property">: Optional<span class="p">[</span>Dict<span class="p">[</span>str<span class="p">, </span>Field<span class="p">]</span><span class="p">]</span></em><a class="headerlink" href="#fastapi_admin.site.Resource.searchFields" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="fastapi_admin.site.Resource.title">
-<code class="sig-name descname">title</code><em class="property">: str</em><em class="property"> = None</em><a class="headerlink" href="#fastapi_admin.site.Resource.title" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">title</code><em class="property">: str</em><a class="headerlink" href="#fastapi_admin.site.Resource.title" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
 <dt id="fastapi_admin.site.Site">
-<em class="property">class </em><code class="sig-prename descclassname">fastapi_admin.site.</code><code class="sig-name descname">Site</code><a class="reference internal" href="_modules/fastapi_admin/site.html#Site"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastapi_admin.site.Site" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">fastapi_admin.site.</code><code class="sig-name descname">Site</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">name</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">logo</span><span class="p">:</span> <span class="n">pydantic.networks.HttpUrl</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">login_logo</span><span class="p">:</span> <span class="n">pydantic.networks.HttpUrl</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">login_footer</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">login_description</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">footer</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">locale</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">locale_switcher</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em>, <em class="sig-param"><span class="n">theme_switcher</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em>, <em class="sig-param"><span class="n">theme</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">url</span><span class="p">:</span> <span class="n">pydantic.networks.HttpUrl</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">grid_style</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">1</span></em>, <em class="sig-param"><span class="n">css</span><span class="p">:</span> <span class="n">List<span class="p">[</span>pydantic.networks.HttpUrl<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">menus</span><span class="p">:</span> <span class="n">List<span class="p">[</span><a class="reference internal" href="#fastapi_admin.site.Menu" title="fastapi_admin.site.Menu">fastapi_admin.site.Menu</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fastapi_admin/site.html#Site"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastapi_admin.site.Site" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">pydantic.main.BaseModel</span></code></p>
 <dl class="py attribute">
 <dt id="fastapi_admin.site.Site.css">
-<code class="sig-name descname">css</code><em class="property">: Optional[List[HttpUrl]]</em><em class="property"> = None</em><a class="headerlink" href="#fastapi_admin.site.Site.css" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">css</code><em class="property">: Optional<span class="p">[</span>List<span class="p">[</span>HttpUrl<span class="p">]</span><span class="p">]</span></em><a class="headerlink" href="#fastapi_admin.site.Site.css" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="fastapi_admin.site.Site.footer">
-<code class="sig-name descname">footer</code><em class="property">: Optional[str]</em><em class="property"> = None</em><a class="headerlink" href="#fastapi_admin.site.Site.footer" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">footer</code><em class="property">: Optional<span class="p">[</span>str<span class="p">]</span></em><a class="headerlink" href="#fastapi_admin.site.Site.footer" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="fastapi_admin.site.Site.grid_style">
-<code class="sig-name descname">grid_style</code><em class="property">: int</em><em class="property"> = None</em><a class="headerlink" href="#fastapi_admin.site.Site.grid_style" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">grid_style</code><em class="property">: int</em><a class="headerlink" href="#fastapi_admin.site.Site.grid_style" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="fastapi_admin.site.Site.locale">
-<code class="sig-name descname">locale</code><em class="property">: str</em><em class="property"> = None</em><a class="headerlink" href="#fastapi_admin.site.Site.locale" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">locale</code><em class="property">: str</em><a class="headerlink" href="#fastapi_admin.site.Site.locale" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="fastapi_admin.site.Site.locale_switcher">
-<code class="sig-name descname">locale_switcher</code><em class="property">: bool</em><em class="property"> = None</em><a class="headerlink" href="#fastapi_admin.site.Site.locale_switcher" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">locale_switcher</code><em class="property">: bool</em><a class="headerlink" href="#fastapi_admin.site.Site.locale_switcher" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="fastapi_admin.site.Site.login_description">
-<code class="sig-name descname">login_description</code><em class="property">: Optional[str]</em><em class="property"> = None</em><a class="headerlink" href="#fastapi_admin.site.Site.login_description" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">login_description</code><em class="property">: Optional<span class="p">[</span>str<span class="p">]</span></em><a class="headerlink" href="#fastapi_admin.site.Site.login_description" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="fastapi_admin.site.Site.login_footer">
-<code class="sig-name descname">login_footer</code><em class="property">: Optional[str]</em><em class="property"> = None</em><a class="headerlink" href="#fastapi_admin.site.Site.login_footer" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">login_footer</code><em class="property">: Optional<span class="p">[</span>str<span class="p">]</span></em><a class="headerlink" href="#fastapi_admin.site.Site.login_footer" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="fastapi_admin.site.Site.login_logo">
-<code class="sig-name descname">login_logo</code><em class="property">: Optional[HttpUrl]</em><em class="property"> = None</em><a class="headerlink" href="#fastapi_admin.site.Site.login_logo" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">login_logo</code><em class="property">: Optional<span class="p">[</span>HttpUrl<span class="p">]</span></em><a class="headerlink" href="#fastapi_admin.site.Site.login_logo" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="fastapi_admin.site.Site.logo">
-<code class="sig-name descname">logo</code><em class="property">: Optional[HttpUrl]</em><em class="property"> = None</em><a class="headerlink" href="#fastapi_admin.site.Site.logo" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">logo</code><em class="property">: Optional<span class="p">[</span>HttpUrl<span class="p">]</span></em><a class="headerlink" href="#fastapi_admin.site.Site.logo" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="fastapi_admin.site.Site.menus">
-<code class="sig-name descname">menus</code><em class="property">: Optional[List[Menu]]</em><em class="property"> = None</em><a class="headerlink" href="#fastapi_admin.site.Site.menus" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">menus</code><em class="property">: Optional<span class="p">[</span>List<span class="p">[</span>Menu<span class="p">]</span><span class="p">]</span></em><a class="headerlink" href="#fastapi_admin.site.Site.menus" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="fastapi_admin.site.Site.name">
-<code class="sig-name descname">name</code><em class="property">: str</em><em class="property"> = None</em><a class="headerlink" href="#fastapi_admin.site.Site.name" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">name</code><em class="property">: str</em><a class="headerlink" href="#fastapi_admin.site.Site.name" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="fastapi_admin.site.Site.theme">
-<code class="sig-name descname">theme</code><em class="property">: Optional[str]</em><em class="property"> = None</em><a class="headerlink" href="#fastapi_admin.site.Site.theme" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">theme</code><em class="property">: Optional<span class="p">[</span>str<span class="p">]</span></em><a class="headerlink" href="#fastapi_admin.site.Site.theme" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="fastapi_admin.site.Site.theme_switcher">
-<code class="sig-name descname">theme_switcher</code><em class="property">: bool</em><em class="property"> = None</em><a class="headerlink" href="#fastapi_admin.site.Site.theme_switcher" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">theme_switcher</code><em class="property">: bool</em><a class="headerlink" href="#fastapi_admin.site.Site.theme_switcher" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="fastapi_admin.site.Site.url">
-<code class="sig-name descname">url</code><em class="property">: Optional[HttpUrl]</em><em class="property"> = None</em><a class="headerlink" href="#fastapi_admin.site.Site.url" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">url</code><em class="property">: Optional<span class="p">[</span>HttpUrl<span class="p">]</span></em><a class="headerlink" href="#fastapi_admin.site.Site.url" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -850,6 +850,11 @@
 </div>
 <div class="section" id="module-fastapi_admin">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-fastapi_admin" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="fastapi_admin.version">
+<code class="sig-prename descclassname">fastapi_admin.</code><code class="sig-name descname">version</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/fastapi_admin.html#version"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastapi_admin.version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </div>
 </div>
 
