@@ -1,3 +1,6 @@
+import sys  # noqa
+sys.path.append("./")  # noqa
+
 import os
 
 import uvicorn
@@ -8,8 +11,9 @@ from tortoise.contrib.fastapi import register_tortoise
 from fastapi_admin.factory import app as admin_app
 from fastapi_admin.site import Site
 
+db_url = "mysql://mysql:123456@127.0.0.1:3306/fastapi-admin"
 TORTOISE_ORM = {
-    "connections": {"default": os.getenv("DATABASE_URL")},
+    "connections": {"default": db_url},
     "apps": {
         "models": {
             "models": ["examples.models", "fastapi_admin.models"],
