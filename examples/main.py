@@ -32,6 +32,10 @@ def create_app():
         allow_headers=["*"],
     )
 
+    from fastapi.staticfiles import StaticFiles
+    fast_app.mount(
+        "/", StaticFiles(directory="static"), name="static")
+
     return fast_app
 
 
@@ -56,4 +60,5 @@ async def start_up():
 
 
 if __name__ == "__main__":
-    uvicorn.run("main:app", port=8000, debug=False, reload=False, lifespan="on")
+    uvicorn.run("main:app", port=8000, debug=False,
+                reload=False, lifespan="on")
