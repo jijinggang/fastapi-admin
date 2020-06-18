@@ -12,3 +12,5 @@ xlsxwriter
 colorama 
 prompt_toolkit
 aiofiles
+ujson
+jinja2
